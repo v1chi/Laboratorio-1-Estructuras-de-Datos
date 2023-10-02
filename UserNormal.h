@@ -1,9 +1,9 @@
 #pragma once
 #include <iostream>
-#include "Usuario.h"
+#include "User.h"
 using namespace std;
 
-class Niño: public Usuario
+class UserNormal: public User
 {
 
 };
