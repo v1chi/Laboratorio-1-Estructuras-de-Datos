@@ -12,3 +12,11 @@ class Production: public Software
     Production(string name, string developer, int price, string type);
     string getType();
 };
+
+
+//------------------------------METODOS-------------------------------------
+Production::Production(string name, string developer, int price, string type):Software(name, developer, price)
+{
+    this->type=type;
+};
+string Production::getType(){return this->type;};

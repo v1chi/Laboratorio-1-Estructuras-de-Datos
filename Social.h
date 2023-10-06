@@ -15,13 +15,13 @@ class Social: public Software
     void deleteFriend(string user);
 };
 
-Social::Social(string name, string developer, int price):Software(name, developer, price){};
 
+//------------------------------METODOS-------------------------------------
+Social::Social(string name, string developer, int price):Software(name, developer, price){};
 void Social::addFriend(string user)
 {
     this->friends.push_back(user);
 };
-
 void Social::deleteFriend(string user)
 {  
     for(int i=0; i<this->friends.size(); i++){
