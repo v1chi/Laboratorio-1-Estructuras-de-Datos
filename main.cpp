@@ -13,8 +13,8 @@ using namespace std;
 User* buscarUsuario(string nombreusuario, vector<User> usuarios)
 {
     for(int i=0; i < usuarios.size(); i++){
-        if(usuarios[i]->getUsername() == nombreusuario){
-            return usuarios[i];
+        if(usuarios[i].getUsername() == nombreusuario){
+            return usuarios[i]*;
         }
     }
     cout << "No se encontro el usuario" << endl;
@@ -41,12 +41,12 @@ void verMisSoftwares(User* usuario)
     }
 }
 
-void agregarSoftware(User* usuario, vector<vector<Software*>> biblioteca)
+void agregarSoftware(User* usuario, vector<vector<Software>> biblioteca)
 {
     cout << "Todos los softwares: " << endl;
     for(int i = 0; i < 6; i++){
         for(int j = 0; j < biblioteca[i].size(); j++){
-            cout <<biblioteca[i][j].toString() << endl;
+            cout << biblioteca[i][j]->toString() << endl;
         }
     }
 
@@ -56,7 +56,9 @@ void agregarSoftware(User* usuario, vector<vector<Software*>> biblioteca)
     for(int i = 0; i < 6; i++){
         for(int j = 0; j < biblioteca[i].size(); j++){
             if(biblioteca[i][j].getName() == softwareAgregar){
-                usuario->getSoftwares[i].push_back(biblioteca[i][j]*);
+                Software s = biblioteca[i][j];
+                Software* a = s*;
+                usuario->getSoftwares[i].push_back(a);
                 cout << "Software agregado con exito" << endl;
                 break;
             }
@@ -73,11 +75,11 @@ void eliminarMiSoftware(User* usuario)
     cin >> softwareEliminar;
     for(int i = 0; i < 6; i++){
         for(int j = 0; j < usuario->getSoftwares()[i].size(); j++){
-            if(usuario->getSoftwares()[i]->getName == softwareEliminar){
+            if(usuario->getSoftwares()[i].getName == softwareEliminar){
                 usuario->getSoftwares[i].push_back(biblioteca[i][j]*);
                 usuario->getSoftwares()[i].erase(usuario->getSoftwares()[i].begin(),usuario->getSoftwares()[i].begin()+i);
                  cout << "Software eliminado con exito" << endl;
-            break<
+            break;
             }
         }
     }
@@ -86,10 +88,16 @@ void eliminarMiSoftware(User* usuario)
 
 void verHistorial(User* usuario)
 {
+    if(usuario->getSoftwares()[2].size() != 0){
+        cout << "Lista de software de tipo navegador disponibles: " << endl;
+        for(int i = 0; i < usuario->getSoftwares()[2].size(); i++){
+            cout << usuario->getSoftwares()[2][i]->toString() " << endl;
+        }
 
+    }
 }
 
-void sesionAdmin(User* usuario, vector<User> usuarios, vector<vector<Software*>> biblioteca, bool sesion)
+void sesionAdmin(User* usuario, vector<User> usuarios, vector<vector<Software>> biblioteca, bool sesion)
 {
     cout << "------------------------------MENU------------------------------" << endl;
     cout << "Ingrese una opcion" << endl;
@@ -157,12 +165,12 @@ void sesionAdmin(User* usuario, vector<User> usuarios, vector<vector<Software*>>
     }
 }
 
-void sesionNormal(User* usuario, vector<User> usuarios, vector<vector<Software*>> biblioteca, bool sesion)
+void sesionNormal(User* usuario, vector<User> usuarios, vector<vector<Software>> biblioteca, bool sesion)
 {
 
 }
 
-void menuUsuario(vector<User> usuarios, vector<vector<Software*>> biblioteca)
+void menuUsuario(vector<User> usuarios, vector<vector<Software>> biblioteca)
 {
     string nombreusuario;
     string contrasena;

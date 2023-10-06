@@ -10,7 +10,7 @@ class Social: public Software
     vector<User*> friends;
 
     public:
-    Social(string name, string developer, int price);
+    Social(string name, string developer, int price, bool forUnderage);
     void addFriend(User* user);
     void deleteFriend(User* user);
     void seeFriends();
@@ -18,7 +18,7 @@ class Social: public Software
 
 
 //--------------------------------------METODOS--------------------------------------------
-Social::Social(string name, string developer, int price, bool isForUnderage):Software(name, developer, price, isForUnderage){};
+Social::Social(string name, string developer, int price, bool forUnderage):Software(name, developer, price, forUnderage){};
 void Social::addFriend(User* user)
 {
     this->friends.push_back(user);
