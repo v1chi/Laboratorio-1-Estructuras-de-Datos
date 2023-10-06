@@ -73,10 +73,10 @@ void eliminarMiSoftware(User* usuario)
     cin >> softwareEliminar;
     for(int i = 0; i < 6; i++){
         for(int j = 0; j < usuario->getSoftwares()[i].size(); j++){
-            if(usuario->getSoftwares()[i].getName == softwareEliminar){
-                usuario->getSoftwares[i].push_back(biblioteca[i][j]*);
+            if(usuario->getSoftwares()[i].getName() == softwareEliminar){
+                usuario->getSoftwares[i].push_back(&biblioteca[i][j]);
                 usuario->getSoftwares()[i].erase(usuario->getSoftwares()[i].begin(),usuario->getSoftwares()[i].begin()+i);
-                 cout << "Software eliminado con exito" << endl;
+                cout << "Software eliminado con exito" << endl;
             break;
             }
         }

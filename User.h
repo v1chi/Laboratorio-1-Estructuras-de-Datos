@@ -10,7 +10,7 @@ class User
     string password;
     int age;
     string mail;
-    bool logUserUser;
+    bool logUser;
     vector<vector<Software*>> softwares;
 
     public:
