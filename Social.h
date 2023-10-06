@@ -13,7 +13,7 @@ class Social: public Software
     Social(string name, string developer, int price);
     void addFriend(User* user);
     void deleteFriend(User* user);
-    void seeFriends*();
+    void seeFriends();
 };
 
 
