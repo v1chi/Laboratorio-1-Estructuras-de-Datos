@@ -21,6 +21,16 @@ bool usuarioCorrecto(User* usuario, string contrasena, vector<User> usuarios)
 
     return false;
 }
+void sesionAdmin(User* usuario, vector<User> usuarios, vector<Software> biblioteca)
+{
+
+}
+
+void sesionNormal(User* usuario, vector<User> usuarios, vector<Software> biblioteca)
+{
+
+}
+
 void menu(vector<User> usuarios, vector<Software> biblioteca)
 {
     string nombreusuario;
@@ -46,15 +56,6 @@ void menu(vector<User> usuarios, vector<Software> biblioteca)
 
         }
     }
-}
-void sesionAdmin(User* usuario, vector<User> usuarios, vector<Software> biblioteca)
-{
-
-}
-
-void sesionNormal(User* usuario, vector<User> usuarios, vector<Software> biblioteca)
-{
-
 }
 
 int main(){
