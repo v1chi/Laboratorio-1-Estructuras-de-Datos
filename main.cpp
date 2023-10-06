@@ -295,7 +295,7 @@ void menuUsuario(vector<User> usuarios, vector<vector<Software>> biblioteca)
     if(usuarioCorrecto(nombreusuario, contrasena, usuarios)!=-1)
     {   
         //Buscar usuario en lista de usuarios generales
-        User usuario = usuarios[i];
+        User usuario = usuarios[usuarioCorrecto(nombreusuario, contrasena, usuarios)];
 
         //acceder menu principal
         bool sesion = true;
