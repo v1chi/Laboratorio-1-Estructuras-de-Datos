@@ -13,7 +13,7 @@ using namespace std;
 User buscarUsuario(string nombreusuario, vector<User> usuarios)
 {
     //Buscar en la lista general de usuarios para ver si existe y lo retorna
-    Usuario u;
+    User u;
     for(int i=0; i < usuarios.size(); i++){
         if(usuarios[i].getUsername() == nombreusuario){
             u = usuarios[i];
@@ -84,7 +84,7 @@ void eliminarMiSoftware(User usuario)
     for(int i = 0; i < 6; i++){
         for(int j = 0; j < usuario.getSoftwares()[i].size(); j++){
             if(usuario.getSoftwares()[i][j].getName() == softwareEliminar){
-                erase(usuario.getSoftwares()[i].begin(),usuario.getSoftwares()[i].begin()+i);
+                //erase(usuario.getSoftwares()[i].begin(),usuario.getSoftwares()[i].begin()+i);
                 cout << "Software eliminado con exito" << endl;
                 break;
             }
