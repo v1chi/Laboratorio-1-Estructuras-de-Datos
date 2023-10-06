@@ -9,7 +9,7 @@
 #include "Security.h"
 #include "Social.h"
 using namespace std;
-
+/*
 User buscarUsuario(string nombreusuario, vector<User> usuarios)
 {
     //Buscar en la lista general de usuarios para ver si existe y lo retorna
@@ -21,15 +21,19 @@ User buscarUsuario(string nombreusuario, vector<User> usuarios)
     cout << "No se encontro el usuario" << endl;
     return User u(NULL, NULL, 0, NULL, false);
 }
-
+*/
 bool usuarioCorrecto(User usuario, string contrasena, vector<User> usuarios)
 {
     //Verifica si la contraseña es la adecuada para el usuario
-    if(usuario!=NULL){
-        if(usuario.getPassword() == contrasena){
-            return true;
+    for(int i=0; i < usuarios.size(); i++){
+        if(usuarios[i].getUsername() == nombreusuario){
+            if(usuarios[i].getPassword() == contrasena){
+                cout << "Acceso exitoso" << endl;
+                return true;
+            }
         }
     }
+    cout << "Usuario o contrasena incorrectas" << endl;
     return false;
 }
 
@@ -88,7 +92,7 @@ void eliminarMiSoftware(User usuario)
     }
     cout << "No se pudo eliminar el software" << endl;
 }
-
+/*
 void verHistorial(User usuario)
 {
     //Se pide el nombre del navegador del usuario al cual le desea ver el historial, si se encuentra se hace una especie de casteo
@@ -164,7 +168,6 @@ void borrarArchivo(User usuario)
     cout << "No se pudo encontrar el software" << endl;
 }
 
-/*
 void agregarAmigo(User usuario,  vector<User> usuarios)
 {
     string nombreSocial;
@@ -289,12 +292,17 @@ void menuUsuario(vector<User> usuarios, vector<vector<Software>> biblioteca)
     cout << "Ingrese su contrasena: " << endl;
     cin >> contrasena;
 
-    //Verificar si existe el usuario
-    User usuario = buscarUsuario(nombreusuario, usuarios);
-
-    //Verificar contraseña del usuario
-    if(usuario.getUsername()!=NULL && usuarioCorrecto(usuario, contrasena, usuarios))
+    //Verificar si existe el usuario y la contraseña del usuario
+    if(usuarioCorrecto(nombreusuario, contrasena, usuarios))
     {
+        //Buscar usuario en lista de usuarios generales
+        for(int i=0; i < usuarios.size(); i++){
+            if(usuarios[i].getUsername() == nombreusuario){
+                User usuario = usuarios[i];
+                break;
+            }
+        }
+    }
         bool sesion = true;
         while(sesion)
         {
@@ -356,7 +364,7 @@ int main(){
     Social soc2("soc2","devsoc2",9034, false);
 
     //Lista de softwares y usuarios del sistema interno
-    vector<vector<Software>> biblioteca{{game1, game2}, {of1, of2, of3, of4, of5, of6}, {nav1, nav2}, {prod1, prod2, prod3, prod4}, {sec1, sec2, sec3, sec4, sec5, sec6}, {soc1,soc2}};
+    vector<vector<Software>> biblioteca{{game1, game2}, {of1, of2, of3, of4, of5}, {nav1, nav2}, {prod1, prod2, prod3, prod4}, {sec1, sec2, sec3, sec4, sec5, sec6}, {soc1,soc2}};
     vector<User> usuarios{adm1, child1, child2, child3, child4, normal1, normal2, normal3, normal4, normal5, normal6, normal7, normal8, normal9, normal10};
 
     //Comienzo del menú de usuario
