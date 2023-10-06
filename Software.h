@@ -19,7 +19,7 @@ class Software
     string getName();
     string getDeveloper();
     int getPrice();
-    vector<User*> getUsers();
+    //vector<User*> getUsers();
     //virtual tostring
 
 };

@@ -21,7 +21,29 @@ bool usuarioCorrecto(User* usuario, string contrasena, vector<User> usuarios)
 
     return false;
 }
+void menu()
+{
+    //Preguntar por el nombre de usuario y la contraseña     
+    cout << "Ingrese su nombg++re de usuario: " << endl;
+    cin >> nombreusuario;
+    cout << "Ingrese su contrasena: " << endl;
+    cin >> contrasena;
 
+    //Verificar si existe el usuario
+    User* usuario = buscarUsuario(nombreusuario, usuarios);
+
+    //Verificar contraseña del usuario
+    if(usuarioCorrecto(usuario, contrasena, usuarios))
+    {
+        bool sesion = true;
+        while(sesion)
+        {
+            if(usuario->getLog()){sesionAdmin(usuario, usuarios, biblioteca);}
+            else{sesionNormal(usuario, usuarios, biblioteca);}
+
+        }
+    }
+}
 void sesionAdmin(User* usuario, vector<User> usuarios, vector<Software> biblioteca)
 {
 
@@ -78,28 +100,7 @@ int main(){
         switch(opcionMenu)
         {
             case 1:
-                //Preguntar por el nombre de usuario y la contraseña
-                
-                cout << "Ingrese su nombg++re de usuario: " << endl;
-                cin >> nombreusuario;
-                cout << "Ingrese su contrasena: " << endl;
-                cin >> contrasena;
-
-                //Verificar si existe el usuario
-                User* usuario = buscarUsuario(nombreusuario, usuarios);
-
-                //Verificar contraseña del usuario
-                if(usuarioCorrecto(usuario, contrasena, usuarios))
-                {
-                    bool sesion = true;
-                    while(sesion)
-                    {
-                        if(usuario->getLog()){sesionAdmin(usuario, usuarios, biblioteca);}
-                        else{sesionNormal(usuario, usuarios, biblioteca);}
-
-                    }
-                }
-                  
+                menu();
                 break;
             
             case 2:
