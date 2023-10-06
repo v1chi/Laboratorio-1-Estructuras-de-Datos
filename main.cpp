@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 #include <string>
-#include "Software.h"
 #include "User.h"
+#include "Software.h"
 #include "Game.h"
 #include "OfficeAutomation.h"
 #include "Navegation.h"
@@ -10,24 +10,24 @@
 #include "Social.h"
 using namespace std;
 
-User* buscarUsuario(string nombreusuario)
+User* buscarUsuario(string nombreusuario, vector<User> usuarios)
 {
 
     return NULL;
 }
 
-bool usuarioCorrecto(User* usuario, string contrasena)
+bool usuarioCorrecto(User* usuario, string contrasena, vector<User> usuarios)
 {
 
     return false;
 }
 
-void sesionAdmin(User* usuario)
+void sesionAdmin(User* usuario, vector<User> usuarios, vector<Software> biblioteca)
 {
 
 }
 
-void sesionNormal(User* usuario)
+void sesionNormal(User* usuario, vector<User> usuarios, vector<Software> biblioteca)
 {
 
 }
@@ -86,16 +86,16 @@ int main(){
                 cin >> contrasena;
 
                 //Verificar si existe el usuario
-                User* usuario = buscarUsuario(nombreusuario);
+                User* usuario = buscarUsuario(nombreusuario, usuarios);
 
                 //Verificar contraseña del usuario
-                if(usuarioCorrecto(usuario,contrasena))
+                if(usuarioCorrecto(usuario, contrasena, usuarios))
                 {
                     bool sesion = true;
                     while(sesion)
                     {
-                        if(usuario->getLog()){sesionAdmin(usuario);}
-                        else{sesionNormal(usuario);}
+                        if(usuario->getLog()){sesionAdmin(usuario, usuarios, biblioteca);}
+                        else{sesionNormal(usuario, usuarios, biblioteca);}
 
                     }
                 }
