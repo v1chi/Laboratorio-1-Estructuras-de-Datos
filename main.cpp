@@ -34,17 +34,62 @@ bool usuarioCorrecto(User* usuario, string contrasena, vector<User> usuarios)
 void verMisSoftwares(User* usuario)
 {
     cout << "Mis Software: " << endl;
-    for(int i = 0; i < usuario->getSoftwares().size(); i++){
-        cout << usuario->getSoftwares()[i].toString() << endl;
+    for(int i = 0; i < 6; i++){
+        for(int j = 0; j < usuario->getSoftwares()[i].size(); j++){
+            cout << usuario->getSoftwares()[i][j]->toString() << endl;
+        }
     }
 }
 
-void agregarSoftware(User* usuario, vector<Software> biblioteca)
+void agregarSoftware(User* usuario, vector<vector<Software*>> biblioteca)
+{
+    cout << "Todos los softwares: " << endl;
+    for(int i = 0; i < 6; i++){
+        for(int j = 0; j < biblioteca[i].size(); j++){
+            cout <<biblioteca[i][j].toString() << endl;
+        }
+    }
+
+    string softwareAgregar;
+    cout << "Ingrese el nombre del software que desea agregar" << endl;
+    cin >> softwareAgregar;
+    for(int i = 0; i < 6; i++){
+        for(int j = 0; j < biblioteca[i].size(); j++){
+            if(biblioteca[i][j].getName() == softwareAgregar){
+                usuario->getSoftwares[i].push_back(biblioteca[i][j]*);
+                cout << "Software agregado con exito" << endl;
+                break;
+            }
+        }
+    }
+    cout << "No se pudo encontrar el software" << endl;
+
+}
+
+void eliminarMiSoftware(User* usuario)
+{
+    string softwareEliminar;
+    cout << "Ingrese el nombre del software que desea eliminar de su cuenta" << endl;
+    cin >> softwareEliminar;
+    for(int i = 0; i < 6; i++){
+        for(int j = 0; j < usuario->getSoftwares()[i].size(); j++){
+            if(usuario->getSoftwares()[i]->getName == softwareEliminar){
+                usuario->getSoftwares[i].push_back(biblioteca[i][j]*);
+                usuario->getSoftwares()[i].erase(usuario->getSoftwares()[i].begin(),usuario->getSoftwares()[i].begin()+i);
+                 cout << "Software eliminado con exito" << endl;
+            break<
+            }
+        }
+    }
+    cout << "No se pudo eliminar el software" << endl;
+}
+
+void verHistorial(User* usuario)
 {
 
 }
 
-void sesionAdmin(User* usuario, vector<User> usuarios, vector<Software> biblioteca, bool sesion)
+void sesionAdmin(User* usuario, vector<User> usuarios, vector<vector<Software*>> biblioteca, bool sesion)
 {
     cout << "------------------------------MENU------------------------------" << endl;
     cout << "Ingrese una opcion" << endl;
@@ -53,12 +98,14 @@ void sesionAdmin(User* usuario, vector<User> usuarios, vector<Software> bibliote
     cout << "3. Eliminar un software de mi biblioteca" << endl;
     cout << "4. Eliminar un software de la biblioteca general" << endl;
     cout << "5. Ver mi historial" << endl;
-    cout << "6. Crear un archivo" << endl;
-    cout << "7. Eliminar un archivo" << endl;
-    cout << "8. Agregar un amigo" << endl;
-    cout << "9. Eliminar un amigo" << endl;
-    cout << "10. Acceder al log de los software" << endl;
-    cout << "11. Cerrar sesión" << endl;
+    cout << "6. Agregar pagina a historial" << endl;
+    cout << "7. Crear un archivo" << endl;
+    cout << "8. Eliminar un archivo" << endl;
+    cout << "9. Ver cantidad de archivos" << endl;
+    cout << "10. Agregar un amigo" << endl;
+    cout << "11. Eliminar un amigo" << endl;
+    cout << "12. Acceder al log de los software" << endl;
+    cout << "13. Cerrar sesión" << endl;
 
     int opcionAdmin;
     cin >> opcionAdmin;
@@ -72,86 +119,36 @@ void sesionAdmin(User* usuario, vector<User> usuarios, vector<Software> bibliote
             agregarSoftware(usuario, biblioteca);
             break;
         case 3:
-            eliminarMiSoftware(usuario, biblioteca);
+            eliminarMiSoftware(usuario);
             break;
         case 4:
-
+            cout << "Aun no contamos con esta opcion :(" << endl;
             break;
         case 5:
             verHistorial(usuario);
             break;
         case 6:
-            crearArchivo(usuario);
+            agregarHistorial(usuario);
             break;
         case 7:
-            borrarArchivo(usuario);
+            crearArchivo(usuario);
             break;
         case 8:
-            agregarAmigo(usuario, usuarios);
+            borrarArchivo(usuario);
             break;
         case 9:
-            eliminarAmigo(usuario, usuarios);
+            cantidadArchivos(usuario);
             break;
         case 10:
-            log(biblioteca, usuarios);
+            agregarAmigo(usuario, usuarios);
             break;
         case 11:
-            sesion = false;
-            break;
-        default:
-            cout << "Opcion invalida" << endl;
-            break;
-    }
-}
-
-void sesionNormal(User* usuario, vector<User> usuarios, vector<Software> biblioteca, bool sesion)
-{
-    cout << "MENU" << endl;
-    cout << "Ingrese una opcion" << endl;
-    cout << "2. Ver mis software" << endl;
-    cout << "2. Agregar un software a mi biblioteca" << endl;
-    cout << "3. Eliminar un software de mi biblioteca" << endl;
-    cout << "4. Eliminar un software de la biblioteca general" << endl;
-    cout << "5. Ver mi historial" << endl;
-    cout << "6. Crear un archivo" << endl;
-    cout << "7. Eliminar un archivo" << endl;
-    cout << "8. Agregar un amigo" << endl;
-    cout << "9. Eliminar un amigo" << endl;
-    cout << "10. Cerrar sesión" << endl;
-
-    int opcionUser;
-    cin >> opcionUser;
-
-    switch(opcionUser)
-    {
-        case 1:
-            verMisSoftwares(usuario);
-            break;
-        case 2:
-            agregarSoftware(usuario, biblioteca);
-            break;
-        case 3:
-            eliminarMiSoftware(usuario, biblioteca);
-            break;
-        case 4:
-
-            break;
-        case 5:
-            verHistorial(usuario);
-            break;
-        case 6:
-            crearArchivo(usuario);
-            break;
-        case 7:
-            borrarArchivo(usuario);
-            break;
-        case 8:
-            agregarAmigo(usuario, usuarios);
-            break;
-        case 9:
             eliminarAmigo(usuario, usuarios);
             break;
-        case 10:
+        case 12:
+            log(biblioteca, usuarios);
+            break;
+        case 13:
             sesion = false;
             break;
         default:
@@ -159,7 +156,13 @@ void sesionNormal(User* usuario, vector<User> usuarios, vector<Software> bibliot
             break;
     }
 }
-void menuUsuario(vector<User> usuarios, vector<Software> biblioteca)
+
+void sesionNormal(User* usuario, vector<User> usuarios, vector<vector<Software*>> biblioteca, bool sesion)
+{
+
+}
+
+void menuUsuario(vector<User> usuarios, vector<vector<Software*>> biblioteca)
 {
     string nombreusuario;
     string contrasena;
@@ -217,7 +220,7 @@ int main(){
     Social soc2("soc2","devsoc2",9034, false);
 
     //Lista de softwares y usuarios del sistema interno
-    vector<Software> biblioteca{game1, game2, of1, of2, nav1, nav2, prod1, prod2, sec1, sec2, soc1, soc2};
+    vector<vector<Software>> biblioteca{{game1, game2}, {of1, of2}, {nav1, nav2}, {prod1, prod2}, {sec1, sec2}, {soc1,soc2}};
     vector<User> usuarios{adm1, child1, normal1};
 
     //Comienzo del menú de usuario

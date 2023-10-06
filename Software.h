@@ -9,23 +9,23 @@ class Software
     private:
     string name;
     string developer;
-    bool isForUnderage;
+    bool forUnderage;
 
     int price;
 
     public:
-    Software(string name, string developer, int price, bool isForUnderage);
+    Software(string name, string developer, int price, bool forUnderage);
     string getName();
     string getDeveloper();
     int getPrice();
     bool isForUnderage();
-    //virtual tostring
+    virtual string toString();
 
 };
 
 
 //------------------------------METODOS-------------------------------------
-Software::Software(string name, string developer, int price, bool isForUnderage)
+Software::Software(string name, string developer, int price, bool forUnderage)
 {
     this->name=name;
     this->developer=developer;
@@ -35,4 +35,4 @@ Software::Software(string name, string developer, int price, bool isForUnderage)
 string Software::getName(){return this->name;};
 string Software::getDeveloper(){return this->developer;};
 int Software::getPrice(){return this->price;};
-bool Software::isForUnderage(){return this->isForUnderage;};
+bool Software::isForUnderage(){return this->forUnderage;};

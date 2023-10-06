@@ -16,7 +16,13 @@ class Navegation: public Software
 
 
 //----------------------------------------------------------------METODOS-------------------------------------------------------------
-Navegation::Navegation(string name, string developer, int price, bool isForUnderage):Software(name, developer, price, isForUnderage){};
+Navegation::Navegation(string name, string developer, int price, bool isForUnderage):Software(name, developer, price, isForUnderage)
+{
+    vector<string> historial(10);
+    for(int i = 0; i < 10; i++){
+        this->historial.push_back(NULL);
+    }
+};
 
 void Navegation::addPage(string url)
 {
