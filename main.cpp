@@ -56,7 +56,7 @@ void agregarSoftware(User* usuario, vector<vector<Software>> biblioteca)
     for(int i = 0; i < 6; i++){
         for(int j = 0; j < biblioteca[i].size(); j++){
             if(biblioteca[i][j].getName() == softwareAgregar){
-                usuario->getSoftwares()[i].push_back(&biblioteca[i][j]);
+                usuario->getSoftwares()[i].push_back(biblioteca[i][j]);
                 cout << "Software agregado con exito" << endl;
                 break;
             }
@@ -92,7 +92,7 @@ void verHistorial(User* usuario)
         cin >> nav;
         for(int i = 0; i < usuario->getSoftwares()[2].size(); i++){
             if(usuario->getSoftwares()[2][i]->getName() == nav){
-                Navegation* n = usuario->getSoftwares()[2][i];
+                Navegation n = usuario->getSoftwares()[2][i];
                 n->seeHistorial();
                 break;
             }
@@ -112,7 +112,7 @@ void agregarHistorial(User* usuario)
 
     for(int i = 0; i < usuario->getSoftwares()[2].size(); i++){
             if(usuario->getSoftwares()[2][i]->getName() == navSoftware){
-                Navegation* n = usuario->getSoftwares()[2][i];
+                Navegation n = usuario->getSoftwares()[2][i];
                 n->addPage(url);
                 break;
             }
@@ -129,9 +129,9 @@ void crearArchivo(User* usuario)
 
     for(int i = 0; i < usuario->getSoftwares()[1].size(); i++){
             if(usuario->getSoftwares()[1][i]->getName() == navSoftware){
-                OfficeAutomation* a = usuario->getSoftwares()[1][i];
+                OfficeAutomation a = usuario->getSoftwares()[1][i];
                 a->createFile();
-                break;
+                return;
             }
         }
     cout << "No se pudo encontrar el software" << endl;
@@ -145,7 +145,7 @@ void borrarArchivo(User* usuario)
 
     for(int i = 0; i < usuario->getSoftwares()[1].size(); i++){
             if(usuario->getSoftwares()[1][i]->getName() == navSoftware){
-                OfficeAutomation* a = usuario->getSoftwares()[1][i];
+                OfficeAutomation a = usuario->getSoftwares()[1][i];
                 a->deleteFile();
                 break;
             }
@@ -161,7 +161,7 @@ void cantidadArchivos(User* usuario)
 
     for(int i = 0; i < usuario->getSoftwares()[1].size(); i++){
             if(usuario->getSoftwares()[1][i]->getName() == navSoftware){
-                OfficeAutomation* a = usuario->getSoftwares()[1][i];
+                OfficeAutomation a = usuario->getSoftwares()[1][i];
                 a.getFileCount();
                 break;
             }
@@ -169,14 +169,94 @@ void cantidadArchivos(User* usuario)
     cout << "No se pudo encontrar el software" << endl;
 }
 
-void agregarAmigo(User* usuario)
+void agregarAmigo(User* usuario,  vector<User> usuarios)
 {
+    string nombreSocial;
+    cout << "Ingrese el nombre del software social en donde desee agregar el usuario: " << endl;
+    cin >> nombreSocial;
+    Social s = NULL;
+    for(int i = 0; i < usuario->getSoftwares()[1].size(); i++){
+            if(usuario->getSoftwares()[5][i]->getName() == nombreSocial){
+                s = usuario->getSoftwares()[5][i];
+                break;
+            }  
+    }
+    if(s == NULL){
+        cout << "No se encontro el software" << endl;
+        return;
+    }
 
+    string newFriend;
+    cout << "Ingrese el nombre del usuario que desea agregar: " << endl;
+    cin >> newFriend;
+    User friend = NULL;
+
+    for(int i = 0; i < usuarios.size(); i++){
+        if(usuarios[i].getUsername() ==  newFriend){
+            cout << "Amigo encontrado" << endl;
+            friend = usuarios[i];
+            break;
+        }
+    }
+
+    if(friend == NULL){
+        cout << "Usuario no encontrado" << endl;
+        return;
+    }
+    if(friend.getAge() >= 18 || friend.getAge() == -1){
+        if(usuario->getAge() >= 18 || usuario->getAge() == -1){
+            s.addFriend(newFriend);
+            cout << "Se agrego el nuevo amigo" << endl;
+        }
+        else{
+            cout << "Un niño no puede tener como amigo a un adulto o a un administrador" << endl;
+        }
+    }
+    else if(friend.getAge() < 18 || friend.getAge() >= 0){
+        if(usuario->getAge() < 18 || friend.getAge() >= 0){
+            s.addFriend(newFriend);
+            cout << "Se agrego el nuevo amigo" << endl;
+        }
+        else{
+            cout << "Un niño no puede tener como amigo a un adulto o a un administrador" << endl;
+        }
+    }
 }
 
-void eliminarAmigo(User* usuario)
+void eliminarAmigo(User* usuario,  vector<User> usuarios)
 {
-    
+    string nombreSocial;
+    cout << "Ingrese el nombre del software social en donde desee eliminar el usuario: " << endl;
+    cin >> nombreSocial;
+    Social s = NULL;
+    for(int i = 0; i < usuario->getSoftwares()[1].size(); i++){
+            if(usuario->getSoftwares()[5][i]->getName() == nombreSocial){
+                s = usuario->getSoftwares()[5][i];
+                break;
+            }  
+    }
+    if(s == NULL){
+        cout << "No se encontro el software" << endl;
+        return;
+    }
+
+    string newFriend;
+    cout << "Ingrese el nombre del usuario que desea eliminar: " << endl;
+    cin >> newFriend;
+    User friend = NULL;
+    int posicionFriend;
+
+    for(int i = 0; i < usuarios.size(); i++){
+        if(usuarios[i].getUsername() ==  newFriend){
+            cout << "Amigo encontrado" << endl;
+            friend = usuarios[i];
+            posicionFriend = i;
+            break;
+        }
+    }
+
+    erase(usuario->getSoftwares[5].begin(),usuario->getSoftwares[5].begin()+posicionFriend);
+    cout << "Amigo eliminado" << endl;
 }
 
 void sesionUsuario(User* usuario, vector<User> usuarios, vector<vector<Software>> biblioteca, bool sesion)
