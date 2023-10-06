@@ -5,7 +5,7 @@ adm1(nombre de usuario: "adminav1", contraseña: "123abc", edad: -1, mail: "123@
 child1(nombre de usuario: "nino1", contraseña"123abc", edad 10, mail NULL,log false);
 child2(nombre de usuario: "nino2", contraseña "hsakw", edad 5, mail NULL, log false);
 child3(nombre de usuario: "nino3", contraseña "83ru2", edad 14, mail NULL,log false);
-child1(nombre de usuario: "nino4", contraseña "iosh", edad 17, mail NULL, log false);
+child4(nombre de usuario: "nino4", contraseña "iosh", edad 17, mail NULL, log false);
 normal1(nombre de usuario: "normal1", contraseña  "456def", edad 20 ,mail "456@gmail.com",log false);
 normal2(nombre de usuario: "normal2", contraseña "nrt", edad 40 , mail "asd@gmail.com",log  false);
 normal3(nombre de usuario: "normal3", contraseña "rtns", edad 19 ,mail  "qwe@gmail.com",log false);
@@ -47,3 +47,7 @@ prod1(nombre: "pro1", developer: "devprod1",precio:  4382,forunderage: false,tip
 prod2(nombre: "prod2",developer: "devprod2",precio: 237, forunderage: alse, tipo: "video");
 prod3(nombre: "prod3",developer: "devprod3",precio: 3479, forunderage: false, tipo: "streaming");
 prod4(nombre: "prod4",developer: "devprod4",precio: 3412, forunderage: false, tipo: "fotos");
+
+JUEGOS--------------------
+game1(nombre: "CSGO","developer: "VALVE", precio: 145, forunderage: false, genero:"FPS");
+ game2(nombre: "WOW",dev: "BLIZZARD",precio: 386, forunderage: true, genero: "MMO");
