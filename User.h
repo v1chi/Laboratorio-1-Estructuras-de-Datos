@@ -23,7 +23,9 @@ class User
     vector<Software*> getSoftwares();
 };
 
-//------------------------------METODOS-------------------------------------
+
+
+
 User::User(string username, string password, int age, string mail, bool log)
 {
     this->username=username;
