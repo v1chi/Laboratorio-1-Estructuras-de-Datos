@@ -38,5 +38,5 @@ int Software::getPrice(){return this->price;};
 bool Software::isForUnderage(){return this->forUnderage;};
 string Software::toString()
 {
-    return "Nombre: " + name + ", Developer: " + developer + ", Precio: " + to_string(price);
+    return "Nombre: " + name + ", Developer: " + developer + ", Precio: " + to_string(price) + "\n";
 };

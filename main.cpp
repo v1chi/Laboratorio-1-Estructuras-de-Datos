@@ -101,8 +101,7 @@ void verHistorial(User usuario)
         for(int i = 0; i < usuario.getSoftwares()[2].size(); i++){
             if(usuario.getSoftwares()[2][i].getName() == nav){
                 //Navegation n = usuario.getSoftwares()[2][i];
-                Software*  
-                n.seeHistorial();
+                Software* s = dynamic_cast<Software*>(usuario.getSoftwares())[2][i].seeHistorial());
                 break;
             }
         }
@@ -313,18 +312,18 @@ int main(){
     User adm1("adminav1", "123abc", -1, "123@gmail.com", true);
     User child1("nino1", "123abc", 10, NULL, false);
     User child2("nino2", "hsakw", 5, NULL, false);
-    User child1("nino3", "83ru2", 14, NULL, false);
-    User child1("nino4", "iosh", 17, NULL, false);
+    User child3("nino3", "83ru2", 14, NULL, false);
+    User child4("nino4", "iosh", 17, NULL, false);
     User normal1("normal1", "456def", 20 , "456@gmail.com", false);
-    User normal1("normal2", "nrt", 40 , "asd@gmail.com", false);
-    User normal1("normal3", "rtns", 19 , "qwe@gmail.com", false);
-    User normal1("normal4", "thj", 57 , "ert@gmail.com", false);
-    User normal1("normal5", "tr", 92 , "tgb@gmail.com", false);
-    User normal1("normal6", "ytr", 50 , "hjn@gmail.com", false);
-    User normal1("normal7", "fdf", 26 , "uio@gmail.com", false);
-    User normal1("normal8", "wh45", 49 , "kjh@gmail.com", false);
-    User normal1("normal9", "75u", 62 , "jnt@gmail.com", false);
-    User normal1("normal10", "suj", 19 , "jko@gmail.com", false);
+    User normal2("normal2", "nrt", 40 , "asd@gmail.com", false);
+    User normal3("normal3", "rtns", 19 , "qwe@gmail.com", false);
+    User normal4("normal4", "thj", 57 , "ert@gmail.com", false);
+    User normal5("normal5", "tr", 92 , "tgb@gmail.com", false);
+    User normal6("normal6", "ytr", 50 , "hjn@gmail.com", false);
+    User normal7("normal7", "fdf", 26 , "uio@gmail.com", false);
+    User normal8("normal8", "wh45", 49 , "kjh@gmail.com", false);
+    User normal9("normal9", "75u", 62 , "jnt@gmail.com", false);
+    User normal10("normal10", "suj", 19 , "jko@gmail.com", false);
 
 
 //Softwares
@@ -357,8 +356,8 @@ int main(){
     Social soc2("soc2","devsoc2",9034, false);
 
     //Lista de softwares y usuarios del sistema interno
-    vector<vector<Software>> biblioteca{{game1, game2}, {of1, of2}, {nav1, nav2}, {prod1, prod2}, {sec1, sec2}, {soc1,soc2}};
-    vector<User> usuarios{adm1, child1, normal1};
+    vector<vector<Software>> biblioteca{{game1, game2}, {of1, of2, of3, of4, of5, of6}, {nav1, nav2}, {prod1, prod2, prod3, prod4}, {sec1, sec2, sec3, sec4, sec5, sec6}, {soc1,soc2}};
+    vector<User> usuarios{adm1, child1, child2, child3, child4, normal1, normal2, normal3, normal4, normal5, normal6, normal7, normal8, normal9, normal10};
 
     //Comienzo del menú de usuario
     bool menu = true;
