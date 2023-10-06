@@ -30,7 +30,7 @@ Software::Software(string name, string developer, int price, bool forUnderage)
     this->name=name;
     this->developer=developer;
     this->price=price;
-    this->isForUnderage=isForUnderage;
+    this->forUnderage=isForUnderage;
 };
 string Software::getName(){return this->name;};
 string Software::getDeveloper(){return this->developer;};
