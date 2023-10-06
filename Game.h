@@ -12,3 +12,10 @@ class Game: public Software
     Game(string name, string developer, int price, string genre);
     string getGenre();
 };
+
+
+Game::Game(string name, string developer, int price, string genre):Software(name, developer, price)
+{
+    this->genre=genre;
+};
+string Game::getGenre(){return this->genre;};
