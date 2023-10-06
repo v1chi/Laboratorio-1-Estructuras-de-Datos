@@ -19,7 +19,7 @@ class Software
     string getDeveloper();
     int getPrice();
     bool isForUnderage();
-    virtual string toString();
+    string toString();
 
 };
 
@@ -36,3 +36,7 @@ string Software::getName(){return this->name;};
 string Software::getDeveloper(){return this->developer;};
 int Software::getPrice(){return this->price;};
 bool Software::isForUnderage(){return this->forUnderage;};
+string Software::toString()
+{
+    return "Nombre: " + name + ", Developer: " + developer + ", Precio: " + to_string(price);
+};
