@@ -10,11 +10,11 @@ class User
     string password;
     int age;
     string mail;
-    bool log;
+    bool logUserUser;
     vector<vector<Software*>> softwares;
 
     public:
-    User(string username, string password, int age, string mail, bool log);
+    User(string username, string password, int age, string mail, bool logUserUser);
     int getAge();
     string getUsername();
     string getPassword();
@@ -26,18 +26,18 @@ class User
 
 
 
-User::User(string username, string password, int age, string mail, bool log)
+User::User(string username, string password, int age, string mail, bool logUserUser)
 {
     this->username=username;
     this->password=password;
     this->age=age;
     this->mail=mail;
-    this->log=log;
+    this->logUser=logUser;
     vector<Software*> softwares(6);
 };
 int User::getAge(){return this->age;};
 string User::getUsername(){return this->username;};
 string User::getPassword(){return this->password;};
 string User::getMail(){return this->mail;};
-bool User::getLog(){return this->log;};
+bool User::getLog(){return this->logUser;};
 vector<vector<Software*>> User::getSoftwares(){return this->softwares;};
