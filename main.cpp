@@ -302,13 +302,15 @@ void menuUsuario(vector<User> usuarios, vector<vector<Software>> biblioteca)
                 break;
             }
         }
-    }
+        //acceder menu principal
         bool sesion = true;
         while(sesion)
         {
             sesionUsuario(usuario, usuarios, biblioteca, sesion);
         }
     }
+       
+    
     else{
         cout << "Contrasena o usuario incorrecto" << endl; 
     }
