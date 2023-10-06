@@ -30,7 +30,7 @@ string Navegation::seeHistorial()
     string url = "";
     
     if(this->historial.size() <= 0){
-        url = "No existe historial" << endl;
+        url = "No existe historial\n";
     }
     else if(this->historial.size() <= 10){
         for (int i = 0; i < this->historial.size(); i++){

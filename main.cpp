@@ -36,7 +36,7 @@ void verMisSoftwares(User* usuario)
     cout << "Mis Software: " << endl;
     for(int i = 0; i < 6; i++){
         for(int j = 0; j < usuario->getSoftwares()[i].size(); j++){
-            cout << usuario->getSoftwares()[i][j]->toString() << endl;
+            cout << usuario->getSoftwares()[i][j].toString() << endl;
         }
     }
 }
@@ -73,7 +73,7 @@ void eliminarMiSoftware(User* usuario)
     cin >> softwareEliminar;
     for(int i = 0; i < 6; i++){
         for(int j = 0; j < usuario->getSoftwares()[i].size(); j++){
-            if(usuario->getSoftwares()[i][j]->getName() == softwareEliminar){
+            if(usuario->getSoftwares()[i][j].getName() == softwareEliminar){
                 usuario->getSoftwares()[i].erase(usuario->getSoftwares()[i].begin(),usuario->getSoftwares()[i].begin()+i);
                 cout << "Software eliminado con exito" << endl;
             break;
@@ -91,9 +91,9 @@ void verHistorial(User* usuario)
         cout << "Ingrese el nombre del navegador del cual desea ver el historial" << endl;
         cin >> nav;
         for(int i = 0; i < usuario->getSoftwares()[2].size(); i++){
-            if(usuario->getSoftwares()[2][i]->getName() == nav){
+            if(usuario->getSoftwares()[2][i].getName() == nav){
                 Navegation n = usuario->getSoftwares()[2][i];
-                n->seeHistorial();
+                n.seeHistorial();
                 break;
             }
         }
@@ -111,9 +111,9 @@ void agregarHistorial(User* usuario)
     cin >> newUrl;
 
     for(int i = 0; i < usuario->getSoftwares()[2].size(); i++){
-            if(usuario->getSoftwares()[2][i]->getName() == navSoftware){
+            if(usuario->getSoftwares()[2][i].getName() == navSoftware){
                 Navegation n = usuario->getSoftwares()[2][i];
-                n->addPage(url);
+                n.addPage(url);
                 break;
             }
         }
@@ -128,9 +128,9 @@ void crearArchivo(User* usuario)
     cin >> softwareOffice;
 
     for(int i = 0; i < usuario->getSoftwares()[1].size(); i++){
-            if(usuario->getSoftwares()[1][i]->getName() == navSoftware){
+            if(usuario->getSoftwares()[1][i].getName() == navSoftware){
                 OfficeAutomation a = usuario->getSoftwares()[1][i];
-                a->createFile();
+                a.createFile();
                 return;
             }
         }
@@ -144,9 +144,9 @@ void borrarArchivo(User* usuario)
     cin >> softwareOffice;
 
     for(int i = 0; i < usuario->getSoftwares()[1].size(); i++){
-            if(usuario->getSoftwares()[1][i]->getName() == navSoftware){
+            if(usuario->getSoftwares()[1][i].getName() == softwareOffice){
                 OfficeAutomation a = usuario->getSoftwares()[1][i];
-                a->deleteFile();
+                a.deleteFile();
                 break;
             }
         }
@@ -160,9 +160,9 @@ void cantidadArchivos(User* usuario)
     cin >> softwareOffice;
 
     for(int i = 0; i < usuario->getSoftwares()[1].size(); i++){
-            if(usuario->getSoftwares()[1][i]->getName() == navSoftware){
+            if(usuario->getSoftwares()[1][i].getName() == navSoftware){
                 OfficeAutomation a = usuario->getSoftwares()[1][i];
-                a.getFileCount();
+                a.getCount();
                 break;
             }
         }

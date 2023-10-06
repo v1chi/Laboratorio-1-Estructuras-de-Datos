@@ -36,6 +36,6 @@ bool OfficeAutomation::deleteFile()
 };
 string OfficeAutomation::getCount()
 {
-    string a = "Este software tiene " + this->fileCount + " archivos\n";
+    string a = "Este software tiene " << this->fileCount << " archivos\n";
     return a;
 };
