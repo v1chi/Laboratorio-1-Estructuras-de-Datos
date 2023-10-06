@@ -46,7 +46,7 @@ void agregarSoftware(User* usuario, vector<vector<Software>> biblioteca)
     cout << "Todos los softwares: " << endl;
     for(int i = 0; i < 6; i++){
         for(int j = 0; j < biblioteca[i].size(); j++){
-            cout << biblioteca[i][j]->toString() << endl;
+            cout << biblioteca[i][j].toString() << endl;
         }
     }
 
@@ -56,9 +56,7 @@ void agregarSoftware(User* usuario, vector<vector<Software>> biblioteca)
     for(int i = 0; i < 6; i++){
         for(int j = 0; j < biblioteca[i].size(); j++){
             if(biblioteca[i][j].getName() == softwareAgregar){
-                Software s = biblioteca[i][j];
-                Software* a = s*;
-                usuario->getSoftwares[i].push_back(a);
+                usuario->getSoftwares[i].push_back(&biblioteca[i][j]);
                 cout << "Software agregado con exito" << endl;
                 break;
             }
