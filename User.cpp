@@ -12,14 +12,15 @@ using namespace std;
     Software getUserSoftwares();
 */
 
-User::User(string username, string password, int age)
+User::User(string username, string password, int age, string mail, bool log)
 {
     this->username=username;
     this->password=password;
     this->age=age;
+    this->mail=mail;
+    this->log=log;
     //vector<Software> softwares;
 };
-User::~User(){};
 int User::getAge(){return this->age;};
 string User::getUsername(){return this->username;};
 string User::getPassword(){return this->password;};

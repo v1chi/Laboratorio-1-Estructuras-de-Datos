@@ -6,11 +6,10 @@ using namespace std;
 class Navegation: public Software
 {
     private:
-    string* historial;
+    vector<string> historial;
     
     public:
     Navegation(string name, string developer, int price);
-    ~Navegation();
-    void addPage(string);
+    void addPage(string url);
     string seeHistorial();
 };

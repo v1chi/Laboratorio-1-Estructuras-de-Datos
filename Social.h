@@ -7,11 +7,10 @@ using namespace std;
 class Social: public Software
 {
     private:
-    User* friends;
+    vector<User> friends;
 
     public:
     Social(string name, string developer, int price);
-    ~Social();
     void addFriend(string);
     void deleteFriend(string);
 };

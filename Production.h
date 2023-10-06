@@ -10,6 +10,5 @@ class Production: public Software
 
     public:
     Production(string name, string developer, int price, string type);
-    ~Production();
     string getType();
 };

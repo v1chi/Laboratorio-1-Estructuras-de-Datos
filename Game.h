@@ -10,6 +10,5 @@ class Game: public Software
     
     public:
     Game(string name, string developer, int price, string genre);
-    ~Game();
     string getGenre();
 };

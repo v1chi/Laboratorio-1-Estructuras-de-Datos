@@ -9,11 +9,12 @@ class User
     string username;
     string password;
     int age;
+    string mail;
+    bool log;
     //vector<Software> softwares;
 
     public:
-    User(string username, string password, int age);
-    ~User();
+    User(string username, string password, int age, string mail, bool log);
     int getAge();
     string getUsername();
     string getPassword();

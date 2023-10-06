@@ -1,5 +1,6 @@
 #pragma once
 #include <bits/stdc++.h>
+#include <string>
 #include "User.h"
 using namespace std;
 
@@ -9,15 +10,15 @@ class Software
     string name;
     string developer;
     bool underage;
-    vector<User> users;
+    //vector<User> users;
     int price;
 
     public:
     Software(string name, string developer, int price);
-    ~Software();
-    void setLegalAge(bool underage);
+    void setAgeClassification(bool underage);
     string getName();
     string getDeveloper();
     int getPrice();
+    //get users
 
 };

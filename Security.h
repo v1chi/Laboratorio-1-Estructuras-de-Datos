@@ -10,6 +10,5 @@ class Security: public Software
 
     public:
     Security(string name, string developer, int price, string type);
-    ~Security();
     string getType();
 };
