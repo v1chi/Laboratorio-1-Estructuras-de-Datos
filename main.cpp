@@ -61,7 +61,7 @@ void menuUsuario(vector<User> usuarios, vector<Software> biblioteca)
 int main(){
 
 //Usuarios: (username,password,age,mail,bool log)
-    User adm1("adminav1", "123abc", NULL, "123@gmail.com", true);
+    User adm1("adminav1", "123abc", -1, "123@gmail.com", true);
     User child1("nino1", "123abc", 10, NULL, false);
     User normal1("normal1", "456def", 20 , "456@gmail.com", true);
 
