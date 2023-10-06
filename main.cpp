@@ -35,8 +35,8 @@ void verMisSoftwares(User* usuario)
 {
     cout << "Mis Software: " << endl;
     for(int i = 0; i < 6; i++){
-        for(int j = 0; j < userSoftwares[i].size(); j++){
-            cout << userSoftwares[i][j]->toString() << endl;
+        for(int j = 0; j < usuario->getSoftwares()[i].size(); j++){
+            cout << usuario->getSoftwares()[i][j]->toString() << endl;
         }
     }
 }
@@ -56,7 +56,7 @@ void agregarSoftware(User* usuario, vector<vector<Software>> biblioteca)
     for(int i = 0; i < 6; i++){
         for(int j = 0; j < biblioteca[i].size(); j++){
             if(biblioteca[i][j].getName() == softwareAgregar){
-                usuario->getSoftwares[i].push_back(&biblioteca[i][j]);
+                usuario->getSoftwares()[i].push_back(&biblioteca[i][j]);
                 cout << "Software agregado con exito" << endl;
                 break;
             }
@@ -68,14 +68,13 @@ void agregarSoftware(User* usuario, vector<vector<Software>> biblioteca)
 
 void eliminarMiSoftware(User* usuario)
 {
-    vector<vector<Software>> userSoftwares = usuario->getSoftwares();
     string softwareEliminar;
     cout << "Ingrese el nombre del software que desea eliminar de su cuenta" << endl;
     cin >> softwareEliminar;
     for(int i = 0; i < 6; i++){
-        for(int j = 0; j < userSoftwares[i].size(); j++){
-            if(userSoftwares[i][j].getName() == softwareEliminar){
-                userSoftwares[i].erase(userSoftwares[i].begin(),userSoftwares[i].begin()+i);
+        for(int j = 0; j < usuario->getSoftwares()[i].size(); j++){
+            if(usuario->getSoftwares()[i][j]->getName() == softwareEliminar){
+                usuario->getSoftwares()[i].erase(usuario->getSoftwares()[i].begin(),usuario->getSoftwares()[i].begin()+i);
                 cout << "Software eliminado con exito" << endl;
             break;
             }
@@ -86,10 +85,10 @@ void eliminarMiSoftware(User* usuario)
 
 void verHistorial(User* usuario)
 {
-    if(userSoftwares[2].size() != 0){
+    if(usuario->getSoftwares()[2].size() != 0){
         cout << "Lista de software de tipo navegador disponibles: " << endl;
-        for(int i = 0; i < userSoftwares[2].size(); i++){
-            cout << userSoftwares[2][i]->toString() << endl;
+        for(int i = 0; i < usuario->getSoftwares()[2].size(); i++){
+            cout << usuario->getSoftwares()[2][i]->toString() << endl;
         }
 
     }
