@@ -107,6 +107,7 @@ int main(){
                 break;
             default:
                 cout << "Opcion invalida" << endl;
+                break;
         }
 
 
