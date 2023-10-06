@@ -9,7 +9,7 @@
 #include "Security.h"
 #include "Social.h"
 using namespace std;
-
+/*
 User buscarUsuario(string nombreusuario, vector<User> usuarios)
 {
     //Buscar en la lista general de usuarios para ver si existe y lo retorna
@@ -20,7 +20,7 @@ User buscarUsuario(string nombreusuario, vector<User> usuarios)
     }
     return u;
 }
-
+*/
 bool usuarioCorrecto(string nombreusuario, string contrasena, vector<User> usuarios)
 {
     //Verifica si la contraseña es la adecuada para el usuario
@@ -28,12 +28,12 @@ bool usuarioCorrecto(string nombreusuario, string contrasena, vector<User> usuar
         if(usuarios[i].getUsername() == nombreusuario){
             if(usuarios[i].getPassword() == contrasena){
                 cout << "Acceso exitoso" << endl;
-                return true;
+                return i;
             }
         }
     }
     cout << "Usuario o contrasena incorrectas" << endl;
-    return false;
+    return -1;
 }
 
 void verMisSoftwares(User usuario)
@@ -292,10 +292,10 @@ void menuUsuario(vector<User> usuarios, vector<vector<Software>> biblioteca)
     cin >> contrasena;
 
     //Verificar si existe el usuario y la contraseña del usuario
-    if(usuarioCorrecto(nombreusuario, contrasena, usuarios))
+    if(usuarioCorrecto(nombreusuario, contrasena, usuarios)!=-1)
     {   
         //Buscar usuario en lista de usuarios generales
-        User usuario = buscarUsuario(nombreusuario, usuarios);
+        User usuario = usuarios[i];
 
         //acceder menu principal
         bool sesion = true;
