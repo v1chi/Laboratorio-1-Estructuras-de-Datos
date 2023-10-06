@@ -34,9 +34,7 @@ string Navegation::seeHistorial()
     }
     else if(this->historial.size() <= 10){
         for (int i = 0; i < this->historial.size(); i++){
-            if(this->historial[i] != NULL){
-                url += this->historial[i] + "\n";
-            }
+            url += this->historial[i] + "\n";
         }
     }
     else if(this->historial.size() > 10){
