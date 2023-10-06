@@ -13,7 +13,7 @@ using namespace std;
 User buscarUsuario(string nombreusuario, vector<User> usuarios)
 {
     //Buscar en la lista general de usuarios para ver si existe y lo retorna
-    User u;
+    User u();
     for(int i=0; i < usuarios.size(); i++){
         if(usuarios[i].getUsername() == nombreusuario){
             u = usuarios[i];
