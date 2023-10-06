@@ -14,7 +14,7 @@ class User
     vector<vector<Software>> softwares;
 
     public:
-    User(string username, string password, int age, string mail, bool logUserUser);
+    User(string username, string password, int age, string mail, bool logUser);
     int getAge();
     string getUsername();
     string getPassword();
@@ -26,7 +26,7 @@ class User
 
 
 
-User::User(string username, string password, int age, string mail, bool logUserUser)
+User::User(string username, string password, int age, string mail, bool logUser)
 {
     this->username=username;
     this->password=password;
