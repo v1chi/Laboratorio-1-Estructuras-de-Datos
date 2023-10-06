@@ -73,12 +73,13 @@ int main(){
         int opcionMenu;
         cin >> opcionMenu;
 
+        string nombreusuario;
+        string contrasena;
         switch(opcionMenu)
         {
             case 1:
                 //Preguntar por el nombre de usuario y la contraseña
-                string nombreusuario;
-                string contrasena;
+                
                 cout << "Ingrese su nombg++re de usuario: " << endl;
                 cin >> nombreusuario;
                 cout << "Ingrese su contrasena: " << endl;
