@@ -25,7 +25,7 @@ void Social::addFriend(string user)
 void Social::deleteFriend(string user)
 {  
     for(int i=0; i<this->friends.size(); i++){
-        if(this->friends[i]->getUsername() == user)
+        if(this->friends[i].getUsername() == user)
         {
             this->friends.erase(this->friends.begin(),this->friends.begin()+i);
             cout << "Uusario eliminado con exito" << endl;
