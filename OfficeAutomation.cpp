@@ -12,9 +12,11 @@ void OfficeAutomation::createFile()
 };
 bool OfficeAutomation::deleteFile()
 {
-    if(this->fileCount == 0){ cout << "No tiene archivos para eliminar" << endl; }
-    else{
-        this->fileCount -= 1;
-        cout << "Se ha eliminado un archivo con éxito" << endl;
+    if(this->fileCount == 0){ 
+        cout << "No tiene archivos para eliminar" << endl; 
+        return false;
     }
+    this->fileCount -= 1;
+    cout << "Se ha eliminado un archivo con éxito" << endl;
+    return true;
 };

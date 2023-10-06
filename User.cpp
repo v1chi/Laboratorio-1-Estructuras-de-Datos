@@ -17,4 +17,4 @@ string User::getUsername(){return this->username;};
 string User::getPassword(){return this->password;};
 string User::getMail(){return this->mail;};
 bool User::getLog(){return this->log;};
-vector<Software*> User::getSoftwares(){return this->softwares;};
+//vector<Software*> User::getSoftwares(){return this->softwares;};

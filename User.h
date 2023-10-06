@@ -11,12 +11,14 @@ class User
     int age;
     string mail;
     bool log;
-    //vector<Software> softwares;
+    //vector<Software*> softwares;
 
     public:
     User(string username, string password, int age, string mail, bool log);
     int getAge();
     string getUsername();
     string getPassword();
-    //vector<Software> getSoftwares();
+    string getMail();
+    bool getLog();
+    //vector<Software*> getSoftwares();
 };

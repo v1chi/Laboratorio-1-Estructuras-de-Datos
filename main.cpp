@@ -10,7 +10,7 @@
 #include "Social.h"
 using namespace std;
 
-User* buscarUsuario(string usuario)
+User* buscarUsuario(string nombreusuario)
 {
 
     return NULL;
@@ -29,7 +29,7 @@ void sesionAdmin(User* usuario)
 
 void sesionNormal(User* usuario)
 {
-    
+
 }
 
 int main(){
@@ -77,8 +77,9 @@ int main(){
         {
             case 1:
                 //Preguntar por el nombre de usuario y la contraseña
-                string nombreusuario, contrasena;
-                cout << "Ingrese su nombre de usuario: " << endl;
+                string nombreusuario;
+                string contrasena;
+                cout << "Ingrese su nombg++re de usuario: " << endl;
                 cin >> nombreusuario;
                 cout << "Ingrese su contrasena: " << endl;
                 cin >> contrasena;
