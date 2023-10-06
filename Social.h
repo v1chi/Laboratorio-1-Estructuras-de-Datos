@@ -18,7 +18,7 @@ class Social: public Software
 
 
 //--------------------------------------METODOS--------------------------------------------
-Social::Social(string name, string developer, int price):Software(name, developer, price){};
+Social::Social(string name, string developer, int price, bool isForUnderage):Software(name, developer, price, isForUnderage){};
 void Social::addFriend(User* user)
 {
     this->friends.push_back(user);

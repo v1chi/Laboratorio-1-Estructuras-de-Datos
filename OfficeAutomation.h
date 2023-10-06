@@ -9,15 +9,15 @@ class OfficeAutomation: public Software
     int fileCount;
     
     public:
-    OfficeAutomation(string name, string developer, int price);
+    OfficeAutomation(string name, string developer, int price, bool isForUnderage);
     void createFile();
     bool deleteFile();
 
 };
 
 
-//------------------------------METODOS-------------------------------------
-OfficeAutomation::OfficeAutomation(string name, string developer, int price):Software(name, developer, price){};
+//---------------------------------------------------------METODOS------------------------------------------------------------------------------
+OfficeAutomation::OfficeAutomation(string name, string developer, int price,bool isForUnderage):Software(name, developer, price, isForUnderage){};
 void OfficeAutomation::createFile()
 {
     this->fileCount += 1;

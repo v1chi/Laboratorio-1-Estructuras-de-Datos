@@ -9,12 +9,12 @@ class Game: public Software
     string genre;
     
     public:
-    Game(string name, string developer, int price, string genre);
+    Game(string name, string developer, int price, bool isForUnderage, string genre);
     string getGenre();
 };
 
-
-Game::Game(string name, string developer, int price, string genre):Software(name, developer, price)
+//------------------------------------------------------------METODOS------------------------------------------------------------------
+Game::Game(string name, string developer, int price, bool isForUnderage, string genre):Software(name, developer, price, isForUnderage)
 {
     this->genre=genre;
 };

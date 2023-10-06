@@ -9,13 +9,13 @@ class Security: public Software
     string type;
 
     public:
-    Security(string name, string developer, int price, string type);
+    Security(string name, string developer, int price, bool isForUnderage, string type);
     string getType();
 };
 
 
 //------------------------------METODOS-------------------------------------
-Security::Security(string name, string developer, int price, string type):Software(name, developer, price)
+Security::Security(string name, string developer, int price, string type, bool isForUnderage):Software(name, developer, price, isForUnderage)
 {
     this->type=type;
 };

@@ -9,33 +9,30 @@ class Software
     private:
     string name;
     string developer;
-    bool underage;
-    //vector<User*> users;
+    bool isForUnderage;
+
     int price;
 
     public:
-    Software(string name, string developer, int price);
-    void setAgeClassification(bool underage);
+    Software(string name, string developer, int price, bool isForUnderage);
     string getName();
     string getDeveloper();
     int getPrice();
-    //vector<User*> getUsers();
+    bool isForUnderage();
     //virtual tostring
 
 };
 
 
 //------------------------------METODOS-------------------------------------
-Software::Software(string name, string developer, int price)
+Software::Software(string name, string developer, int price, bool isForUnderage)
 {
     this->name=name;
     this->developer=developer;
     this->price=price;
-    //vector<User*> users;
-    
+    this->isForUnderage=isForUnderage;
 };
-void Software::setAgeClassification(bool underage){this->underage=underage;};
 string Software::getName(){return this->name;};
 string Software::getDeveloper(){return this->developer;};
 int Software::getPrice(){return this->price;};
-//vector<User*> Software::getUsers(){return this->users;};
+bool Software::isForUnderage(){return this->isForUnderage;};

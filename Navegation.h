@@ -9,13 +9,14 @@ class Navegation: public Software
     vector<string> historial;
     
     public:
-    Navegation(string name, string developer, int price);
+    Navegation(string name, string developer, int price, bool isForUnderage);
     void addPage(string url);
     string seeHistorial();
 };
 
 
-Navegation::Navegation(string name, string developer, int price):Software(name, developer, price){};
+//----------------------------------------------------------------METODOS-------------------------------------------------------------
+Navegation::Navegation(string name, string developer, int price, bool isForUnderage):Software(name, developer, price, isForUnderage){};
 
 void Navegation::addPage(string url)
 {

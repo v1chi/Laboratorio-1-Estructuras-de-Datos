@@ -9,13 +9,13 @@ class Production: public Software
     string type;
 
     public:
-    Production(string name, string developer, int price, string type);
+    Production(string name, string developer, int price, bool isForUnderage, string type);
     string getType();
 };
 
 
 //------------------------------METODOS-------------------------------------
-Production::Production(string name, string developer, int price, string type):Software(name, developer, price)
+Production::Production(string name, string developer, int price, bool isForUnderage, string type):Software(name, developer, price, isForUnderage)
 {
     this->type=type;
 };
