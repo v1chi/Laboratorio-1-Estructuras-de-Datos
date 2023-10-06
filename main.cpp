@@ -86,15 +86,100 @@ void eliminarMiSoftware(User* usuario)
 void verHistorial(User* usuario)
 {
     if(usuario->getSoftwares()[2].size() != 0){
-        cout << "Lista de software de tipo navegador disponibles: " << endl;
+        
+        string nav;
+        cout << "Ingrese el nombre del navegador del cual desea ver el historial" << endl;
+        cin >> nav;
         for(int i = 0; i < usuario->getSoftwares()[2].size(); i++){
-            cout << usuario->getSoftwares()[2][i]->toString() << endl;
+            if(usuario->getSoftwares()[2][i]->getName() == nav){
+                Navegation* n = usuario->getSoftwares()[2][i];
+                n->seeHistorial();
+                break;
+            }
         }
-
     }
 }
 
-void sesionAdmin(User* usuario, vector<User> usuarios, vector<vector<Software>> biblioteca, bool sesion)
+void agregarHistorial(User* usuario)
+{
+
+    string navSoftware;
+    string newUrl;
+    cout << "Ingrese el nombre del software que desea agregar" << endl;
+    cin >> navSoftware;
+    cout << "Ingrese el url a agregar" << endl;
+    cin >> newUrl;
+
+    for(int i = 0; i < usuario->getSoftwares()[2].size(); i++){
+            if(usuario->getSoftwares()[2][i]->getName() == navSoftware){
+                Navegation* n = usuario->getSoftwares()[2][i];
+                n->addPage(url);
+                break;
+            }
+        }
+
+    cout << "No se pudo encontrar el software" << endl;
+}
+
+void crearArchivo(User* usuario)
+{
+    string softwareOffice;
+    cout << "Ingrese el nombre del software en el cual desea agregar un archivo" << endl;
+    cin >> softwareOffice;
+
+    for(int i = 0; i < usuario->getSoftwares()[1].size(); i++){
+            if(usuario->getSoftwares()[1][i]->getName() == navSoftware){
+                OfficeAutomation* a = usuario->getSoftwares()[1][i];
+                a->createFile();
+                break;
+            }
+        }
+    cout << "No se pudo encontrar el software" << endl;
+}
+
+void borrarArchivo(User* usuario)
+{
+    string softwareOffice;
+    cout << "Ingrese el nombre del software en el cual desea eliminar un archivo" << endl;
+    cin >> softwareOffice;
+
+    for(int i = 0; i < usuario->getSoftwares()[1].size(); i++){
+            if(usuario->getSoftwares()[1][i]->getName() == navSoftware){
+                OfficeAutomation* a = usuario->getSoftwares()[1][i];
+                a->deleteFile();
+                break;
+            }
+        }
+    cout << "No se pudo encontrar el software" << endl;
+}
+
+void cantidadArchivos(User* usuario)
+{
+    string softwareOffice;
+    cout << "Ingrese el nombre del software del cual desea saber la cantidad de archivos" << endl;
+    cin >> softwareOffice;
+
+    for(int i = 0; i < usuario->getSoftwares()[1].size(); i++){
+            if(usuario->getSoftwares()[1][i]->getName() == navSoftware){
+                OfficeAutomation* a = usuario->getSoftwares()[1][i];
+                a.getFileCount();
+                break;
+            }
+        }
+    cout << "No se pudo encontrar el software" << endl;
+}
+
+void agregarAmigo(User* usuario)
+{
+
+}
+
+void eliminarAmigo(User* usuario)
+{
+    
+}
+
+void sesionUsuario(User* usuario, vector<User> usuarios, vector<vector<Software>> biblioteca, bool sesion)
 {
     cout << "------------------------------MENU------------------------------" << endl;
     cout << "Ingrese una opcion" << endl;
@@ -109,8 +194,7 @@ void sesionAdmin(User* usuario, vector<User> usuarios, vector<vector<Software>> 
     cout << "9. Ver cantidad de archivos" << endl;
     cout << "10. Agregar un amigo" << endl;
     cout << "11. Eliminar un amigo" << endl;
-    cout << "12. Acceder al log de los software" << endl;
-    cout << "13. Cerrar sesión" << endl;
+    cout << "12. Cerrar sesión" << endl;
 
     int opcionAdmin;
     cin >> opcionAdmin;
@@ -151,20 +235,12 @@ void sesionAdmin(User* usuario, vector<User> usuarios, vector<vector<Software>> 
             eliminarAmigo(usuario, usuarios);
             break;
         case 12:
-            log(biblioteca, usuarios);
-            break;
-        case 13:
             sesion = false;
             break;
         default:
             cout << "Opcion invalida" << endl;
             break;
     }
-}
-
-void sesionNormal(User* usuario, vector<User> usuarios, vector<vector<Software>> biblioteca, bool sesion)
-{
-
 }
 
 void menuUsuario(vector<User> usuarios, vector<vector<Software>> biblioteca)
@@ -187,9 +263,7 @@ void menuUsuario(vector<User> usuarios, vector<vector<Software>> biblioteca)
         bool sesion = true;
         while(sesion)
         {
-            if(usuario->getLog()){sesionAdmin(usuario, usuarios, biblioteca, sesion);}
-            else{sesionNormal(usuario, usuarios, biblioteca, sesion);}
-
+            sesionUsuario(usuario, usuarios, biblioteca, sesion);
         }
     }
     else{

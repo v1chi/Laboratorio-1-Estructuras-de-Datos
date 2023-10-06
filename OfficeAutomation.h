@@ -12,6 +12,7 @@ class OfficeAutomation: public Software
     OfficeAutomation(string name, string developer, int price, bool isForUnderage);
     void createFile();
     bool deleteFile();
+    string getCount();
 
 };
 
@@ -32,4 +33,9 @@ bool OfficeAutomation::deleteFile()
     this->fileCount -= 1;
     cout << "Se ha eliminado un archivo con éxito" << endl;
     return true;
+};
+string OfficeAutomation::getCount()
+{
+    string a = "Este software tiene " + this->fileCount + " archivos\n";
+    return a;
 };

@@ -18,10 +18,7 @@ class Navegation: public Software
 //----------------------------------------------------------------METODOS-------------------------------------------------------------
 Navegation::Navegation(string name, string developer, int price, bool isForUnderage):Software(name, developer, price, isForUnderage)
 {
-    vector<string> historial(10);
-    for(int i = 0; i < 10; i++){
-        this->historial.push_back(NULL);
-    }
+    vector<string> historial;
 };
 
 void Navegation::addPage(string url)
@@ -31,8 +28,24 @@ void Navegation::addPage(string url)
 string Navegation::seeHistorial()
 {   
     string url = "";
-    for (int i = 0; i < this->historial.size(); i++){
-        url += this->historial[i] + "\n";
+    
+    if(this->historial.size() <= 0){
+        url = "No existe historial" << endl;
     }
+    else if(this->historial.size() <= 10){
+        for (int i = 0; i < this->historial.size(); i++){
+            if(this->historial[i] != NULL){
+                url += this->historial[i] + "\n";
+            }
+        }
+    }
+    else if(this->historial.size() > 10){
+        for (int i = this->historial.size() - 10; i < this->historial.size(); i++){
+            url += this->historial[i] + "\n";
+        }
+    }
+
     return url;
+    
+    
 };
