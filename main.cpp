@@ -31,7 +31,7 @@ void sesionNormal(User* usuario, vector<User> usuarios, vector<Software> bibliot
 
 }
 
-void menu(vector<User> usuarios, vector<Software> biblioteca)
+void menuUsuario(vector<User> usuarios, vector<Software> biblioteca)
 {
     string nombreusuario;
     string contrasena;
@@ -102,7 +102,7 @@ int main(){
         switch(opcionMenu)
         {
             case 1:
-                menu(usuarios, biblioteca);
+                menuUsuario(usuarios, biblioteca);
                 break;
             
             case 2:
