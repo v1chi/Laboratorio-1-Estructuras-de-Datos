@@ -105,6 +105,8 @@ int main(){
             case 2:
                 menu = false;
                 break;
+            default:
+                cout << "Opcion invalida" << endl;
         }
 
 
