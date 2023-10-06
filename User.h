@@ -15,6 +15,7 @@ class User
 
     public:
     User(string username, string password, int age, string mail, bool logUser);
+    User();
     int getAge();
     string getUsername();
     string getPassword();
@@ -35,6 +36,7 @@ User::User(string username, string password, int age, string mail, bool logUser)
     this->logUser=logUser;
     vector<Software> softwares(6);
 };
+User::User(){};
 int User::getAge(){return this->age;};
 string User::getUsername(){return this->username;};
 string User::getPassword(){return this->password;};
