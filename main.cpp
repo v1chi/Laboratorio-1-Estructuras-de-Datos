@@ -14,7 +14,7 @@ User* buscarUsuario(string nombreusuario, vector<User> usuarios)
 {
     for(int i=0; i < usuarios.size(); i++){
         if(usuarios[i].getUsername() == nombreusuario){
-            return usuarios[i]*;
+            return &usuarios[i];
         }
     }
     cout << "No se encontro el usuario" << endl;
@@ -91,7 +91,7 @@ void verHistorial(User* usuario)
     if(usuario->getSoftwares()[2].size() != 0){
         cout << "Lista de software de tipo navegador disponibles: " << endl;
         for(int i = 0; i < usuario->getSoftwares()[2].size(); i++){
-            cout << usuario->getSoftwares()[2][i]->toString() " << endl;
+            cout << usuario->getSoftwares()[2][i]->toString() << endl;
         }
 
     }

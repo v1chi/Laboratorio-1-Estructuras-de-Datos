@@ -15,7 +15,7 @@ class Security: public Software
 
 
 //------------------------------METODOS-------------------------------------
-Security::Security(string name, string developer, int price, bool forUnderage, string type,):Software(name, developer, price, isforUnderage)
+Security::Security(string name, string developer, int price, bool forUnderage, string type):Software(name, developer, price, forUnderage)
 {
     this->type=type;
 };
