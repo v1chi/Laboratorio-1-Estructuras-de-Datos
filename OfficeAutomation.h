@@ -7,11 +7,10 @@ class OfficeAutomation: public Software
 {
     private:
     int fileCount;
-    vector<string> files;
     
     public:
-    OfficeAutomation(string name, string developer, int price, int fileCount);
-    void createFile(string file);
-    bool deleteFile(string file);
+    OfficeAutomation(string name, string developer, int price);
+    void createFile();
+    bool deleteFile();
 
 };

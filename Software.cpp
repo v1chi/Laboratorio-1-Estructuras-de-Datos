@@ -14,4 +14,4 @@ void Software::setAgeClassification(bool underage){this->underage=underage;};
 string Software::getName(){return this->name;};
 string Software::getDeveloper(){return this->developer;};
 int Software::getPrice(){return this->price;};
-//UserSinglyLinkedList* Software::getUsers(){return this->users;};
+vector<User*> Software::getUsers(){return this->users;};

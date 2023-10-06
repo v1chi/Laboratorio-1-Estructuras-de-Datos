@@ -4,10 +4,7 @@
 using namespace std;
 
 
-OfficeAutomation::OfficeAutomation(string name, string developer, int price, int fileCount):Software(name, developer, price)
-{
-    this->fileCount = fileCount;
-};
+OfficeAutomation::OfficeAutomation(string name, string developer, int price):Software(name, developer, price){};
 void OfficeAutomation::createFile()
 {
     this->fileCount += 1;
