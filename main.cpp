@@ -21,8 +21,11 @@ bool usuarioCorrecto(User* usuario, string contrasena, vector<User> usuarios)
 
     return false;
 }
-void menu()
+void menu(vector<User> usuarios, vector<Software> biblioteca)
 {
+    string nombreusuario;
+    string contrasena;
+
     //Preguntar por el nombre de usuario y la contraseña     
     cout << "Ingrese su nombg++re de usuario: " << endl;
     cin >> nombreusuario;
@@ -95,12 +98,10 @@ int main(){
         int opcionMenu;
         cin >> opcionMenu;
 
-        string nombreusuario;
-        string contrasena;
         switch(opcionMenu)
         {
             case 1:
-                menu();
+                menu(usuarios, biblioteca);
                 break;
             
             case 2:
