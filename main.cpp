@@ -254,23 +254,23 @@ void sesionUsuario(User usuario, vector<User> usuarios, vector<vector<Software>>
             break;
         case 5:
         //ver historial de navegacion del usuario
-            verHistorial(usuario);
+            //verHistorial(usuario);
             break;
         case 6:
         //agregar historial de navegacion al usuario
-            agregarHistorial(usuario);
+            //agregarHistorial(usuario);
             break;
         case 7:
         //crear un archivo en un software de ofimatica
-            crearArchivo(usuario);
+            //crearArchivo(usuario);
             break;
         case 8:
         //borrar un archivo de un software de ofimatica
-            borrarArchivo(usuario);
+            //borrarArchivo(usuario);
             break;
         case 9:
         //agregar amigo en software social al usuario
-            agregarAmigo(usuario, usuarios);
+            //agregarAmigo(usuario, usuarios);
             break;
         case 10:
             sesion = false;
