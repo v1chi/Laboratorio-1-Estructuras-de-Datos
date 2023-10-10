@@ -10,7 +10,9 @@
 #include "Social.h"
 using namespace std;
 
-
+//Lista de softwares y usuarios del sistema interno
+vector<Software*> biblioteca;
+vector<User*> usuarios;
 
 void verMisSoftwares(User* usuario)
 {
@@ -24,7 +26,7 @@ void verMisSoftwares(User* usuario)
     }   
 }
 
-void agregarSoftware(User* usuario, vector<Software*> biblioteca)
+void agregarSoftware(User* usuario)
 {
     cout << "Softwares que puede agregar a su biblioteca: " << endl;
     
@@ -35,7 +37,7 @@ void agregarSoftware(User* usuario, vector<Software*> biblioteca)
             }
         }
         else{
-            if(usuario->getAge() < 18){
+            if(usuario->getAge() < 18 && usuario->getAge() > -1){
                 if(biblioteca[i]->isForUnderage()){
                     cout << "ID del software: " << i << ": " << biblioteca[i]->toString() << endl;
                 }
@@ -62,6 +64,23 @@ void agregarSoftware(User* usuario, vector<Software*> biblioteca)
     }
 }
 
+void eliminarSoftware(Software* eliminar)
+{
+    if(eliminar->emptyUsers())
+    {
+        for(int i = 0; i < biblioteca.size(); i++){
+            if(biblioteca[i]->getName() == eliminar->getName()){
+                biblioteca.erase(biblioteca.begin()+i);
+                cout << "Software eliminado" << endl;
+                return;
+            }
+        }
+    }
+    else{
+        cout << "No se puede eliminar, se necesita el permiso de los demas usuarios" << endl;
+    }
+}
+
 void eliminarMiSoftware(User* usuario)
 {   
     if(usuario->getSoftwares().size()==0){
@@ -81,9 +100,25 @@ void eliminarMiSoftware(User* usuario)
     usuario->deleteSoftware(softwareEliminar);
     eliminar->deleteUser(usuario->getUsername());
 
+    cout << "Desea eliminar el software de la biblioteca?" << endl;
+    cout << "1. Si" << endl;
+    cout << "2. No" << endl;
+    int deseaEliminar;
+    cin >> deseaEliminar;
+    switch(deseaEliminar)
+    {
+        case 1:
+            eliminarSoftware(eliminar);
+            break;
+        case 2:
+            break;
+        default:
+            break;
+    }
+
 }
 
-void sesionUsuario(User* usuario, vector<User*> usuarios, vector<Software*> biblioteca, bool sesion, bool login)
+void sesionUsuario(User* usuario, bool sesion, bool login)
 {
     cout << "----------------------------------------------------------------------------------------------------------------" << endl;
     cout << "Ingrese una opcion" << endl;
@@ -101,17 +136,17 @@ void sesionUsuario(User* usuario, vector<User*> usuarios, vector<Software*> bibl
         case 1:
             //Acceder a biblioteca de softwares del usuario
             verMisSoftwares(usuario);
-            sesionUsuario(usuario, usuarios, biblioteca, sesion, login);
+            sesionUsuario(usuario, sesion, login);
             break;
         case 2:
             //Agregar un software a la biblioteca del usuario
-            agregarSoftware(usuario, biblioteca);
-            sesionUsuario(usuario, usuarios, biblioteca, sesion, login);
+            agregarSoftware(usuario);
+            sesionUsuario(usuario, sesion, login);
             break;
         case 3:
             //Eliminar un software de la biblioteca del usuario o de la biblioteca general
             eliminarMiSoftware(usuario);
-            sesionUsuario(usuario, usuarios, biblioteca, sesion, login);
+            sesionUsuario(usuario, sesion, login);
             break;
         case 4:
             sesion = false;
@@ -124,7 +159,7 @@ void sesionUsuario(User* usuario, vector<User*> usuarios, vector<Software*> bibl
 
 }
 
-User* iniciarSesion(vector<User*> usuarios, vector<Software*> biblioteca)
+User* iniciarSesion()
 {
     //User* usuarioActual = nullptr;
     string nombreusuario;
@@ -153,11 +188,7 @@ User* iniciarSesion(vector<User*> usuarios, vector<Software*> biblioteca)
 }
 
 int main(){
-
-//Lista de softwares y usuarios del sistema interno
-    vector<Software*> biblioteca;
-    vector<User*> usuarios;
-
+    
 //Creacion de usuarios
     //Administrador
     User adm1("adminav1", "123abc", -1, "123@gmail.com", true);
@@ -194,7 +225,7 @@ int main(){
     usuarios.push_back(&normal10);
 
 
-//Softwares
+//Creacion de softwares
     //Juegos
     Game game1("CSGO","VALVE", 145, false, "FPS");
     Game game2("WOW","BLIZZARD",386, true, "MMO");
@@ -265,10 +296,10 @@ int main(){
             {
                 case 1:
                     //Se verifica que exista el nombre de usuario y que coincida su contraseña y luego de eso se accede al menu de usuario
-                    usuarioActual = iniciarSesion(usuarios, biblioteca);
+                    usuarioActual = iniciarSesion();
                     if(usuarioActual != nullptr){
                         cout << "Sesion iniciada con exito" << endl;
-                        sesionUsuario(usuarioActual, usuarios, biblioteca, sesion, login);
+                        sesionUsuario(usuarioActual, sesion, login);
                     }
                     break;       
                 case 2:

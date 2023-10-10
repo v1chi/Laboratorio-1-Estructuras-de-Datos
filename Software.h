@@ -25,6 +25,7 @@ class Software
     void addUser(string user);
     void deleteUser(string user);
     virtual string toString();
+    bool emptyUsers();
 
 };
 
@@ -63,6 +64,13 @@ void Software::deleteUser(string user)
         cout << "No se pudo eliminar" << endl;
     }
 };
+bool Software::emptyUsers()
+{
+    if(users.size() == 0){
+        return true;
+    }
+    return false;
+}
 string Software::toString()
 {
     return "Nombre: " + name + ", Developer: " + developer + ", Precio: " + to_string(price);

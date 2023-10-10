@@ -22,5 +22,5 @@ Game::Game(string name, string developer, int price, bool isForUnderage, string 
 string Game::getGenre(){return this->genre;};
 string Game::toString()
 {
-    return "Tipo: Software de Juego, Nombre: " + getName() + ", Developer: " + getDeveloper() + ", Precio: " + to_string(getPrice()) + "Genero: "+ genre;
+    return "Tipo: Software de Juego, Nombre: " + getName() + ", Developer: " + getDeveloper() + ", Precio: " + to_string(getPrice()) + ", Genero: "+ genre;
 };
