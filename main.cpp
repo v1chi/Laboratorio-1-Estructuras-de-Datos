@@ -16,9 +16,11 @@ vector<User*> usuarios;
 
 void verMisSoftwares(User* usuario)
 {
+    //Si el usuario no tiene ningun software en su biblioteca se avisa por pantalla
     if(usuario->getSoftwares().empty()){
         cout << "No tiene softwares" << endl;
     }
+    //Si tiene 1 o mas softwares en su biblioteca se muestran
     else{
         for(int i = 0; i < usuario->getSoftwares().size(); i++){
             cout << usuario->getSoftwares()[i]->toString() << endl;
@@ -28,26 +30,32 @@ void verMisSoftwares(User* usuario)
 
 void agregarSoftware(User* usuario)
 {
+    //Se muestran los softwares que puede agregar
     cout << "Softwares que puede agregar a su biblioteca: " << endl;
     
     for(int i = 0; i < biblioteca.size(); i++){
+        //Si es un software de seguridad hay que revisar si el usuario es administrador
         if(typeid(*biblioteca[i]) == typeid(Security)){
+            //Si el usuario es administrador(es decir, tiene acceso al log) entonces se muestra el software de tipo Seguridad
             if(usuario->getLog()){
                 cout << "ID del software: " << i << ": " << biblioteca[i]->toString() << endl;
             }
         }
+        //Si el software es de otro tipo distinto de Seguridad
         else{
+            //Si el usuario es niño/menor de edad, se muestr el software solo si es apto para menores de edad
             if(usuario->getAge() < 18 && usuario->getAge() > -1){
                 if(biblioteca[i]->isForUnderage()){
                     cout << "ID del software: " << i << ": " << biblioteca[i]->toString() << endl;
                 }
+            //Si el usuario es de tipo normal, se muestra el software
             }else{
                 cout << "ID del software: " << i << ": " << biblioteca[i]->toString() << endl;
             }
         }
     }
 
-    //Preguntar por el software que desea agregar
+    //Preguntar por el ID del software que desea agregar
     int posicionSoftware;
     cout << "Ingrese el ID del software que desea agregar a su biblioteca" << endl;
     cin >> posicionSoftware;
@@ -56,6 +64,7 @@ void agregarSoftware(User* usuario)
     Software* agregar = nullptr;
     agregar = biblioteca[posicionSoftware];
     if(agregar != nullptr){
+        //Se agrega el software a la lista de softwares del usario, ademas se agrega el usuario a la lista de usuarios que usan el software
         usuario->addSoftware(biblioteca[posicionSoftware]);
         biblioteca[posicionSoftware]->addUser(usuario->getUsername());
         cout << "Software agregado con exito" << endl;
@@ -66,6 +75,7 @@ void agregarSoftware(User* usuario)
 
 void eliminarSoftware(Software* eliminar)
 {
+    //Si el software a eliminar no tiene ningun usuario que lo use entonces se elimina
     if(eliminar->emptyUsers())
     {
         for(int i = 0; i < biblioteca.size(); i++){
@@ -76,6 +86,7 @@ void eliminarSoftware(Software* eliminar)
             }
         }
     }
+    //Si hay 1 o mas personas que este/n usando el software entonces no se puede eliminar
     else{
         cout << "No se puede eliminar, se necesita el permiso de los demas usuarios" << endl;
     }
@@ -83,23 +94,30 @@ void eliminarSoftware(Software* eliminar)
 
 void eliminarMiSoftware(User* usuario)
 {   
+    //Si el usuario no tiene ningun software, se le notifica
     if(usuario->getSoftwares().size()==0){
         cout << "No hay softwares para eliminar" << endl;
         return;
     }
 
+    //Si el usuario tiene 1 o mas softwares, se muestran
     int softwareEliminar;
     cout << "Mis Softwares" << endl;
     for(int i = 0; i < usuario->getSoftwares().size(); i++){
         cout << "ID del software: " << i << ": "<< usuario->getSoftwares()[i]->toString() << endl;
     }
     
+    //Se pregunta por el ID del software que desea eliminar
     cout << "Ingrese el ID del software que desea eliminar" << endl;
     cin >> softwareEliminar;
     Software* eliminar = usuario->getSoftwares()[softwareEliminar];
+    //Se elimina el software de la biblioteca del usuario
     usuario->deleteSoftware(softwareEliminar);
+    //Se elimina el usuario de la lista de usuarios que usan el software
     eliminar->deleteUser(usuario->getUsername());
 
+
+    //Se pregunta si se desea eliminar el software de la biblioteca general
     cout << "Desea eliminar el software de la biblioteca?" << endl;
     cout << "1. Si" << endl;
     cout << "2. No" << endl;
@@ -108,6 +126,7 @@ void eliminarMiSoftware(User* usuario)
     switch(deseaEliminar)
     {
         case 1:
+            //Se intenta eliminar el software de la biblioteca general
             eliminarSoftware(eliminar);
             break;
         case 2:
@@ -161,7 +180,6 @@ void sesionUsuario(User* usuario, bool sesion, bool login)
 
 User* iniciarSesion()
 {
-    //User* usuarioActual = nullptr;
     string nombreusuario;
     string contrasena;
 
@@ -189,7 +207,7 @@ User* iniciarSesion()
 
 int main(){
     
-//Creacion de usuarios
+//Creacion de usuarios y agregarlos a la lista de usuarios general
     //Administrador
     User adm1("adminav1", "123abc", -1, "123@gmail.com", true);
     usuarios.push_back(&adm1);
@@ -225,12 +243,48 @@ int main(){
     usuarios.push_back(&normal10);
 
 
-//Creacion de softwares
+//Creacion de softwares y agregarlos a la biblioteca
     //Juegos
-    Game game1("CSGO","VALVE", 145, false, "FPS");
-    Game game2("WOW","BLIZZARD",386, true, "MMO");
+    Game game1("CSGO","Valve", 145, false, "FPS");
+    Game game2("COD: Warzone","Infinity Ward", 379, false, "FPS");
+    Game game3("WOW","BLIZZARD",386, true, "MMO");
+    Game game4("Final Fantasy XIV","SQUARE ENIX",7439, true, "MMO");
+    Game game5("Portal","Valve",74829, true, "PUZZLE");
+    Game game6("Candy Crush","King",74390, true, "PUZZLE");
+    Game game7("Minecraft","Mojang Studios",5672, true, "Sandbox");
+    Game game8("Terraria","ReLogic",3478, true, "Sandbox");
+    Game game9("The Witcher 3","CD",289, false, "RPG");
+    Game game10("Skyrim","Bethesda",30, true, "RPG");
+    Game game11("FIFA 22","EA",62, true, "Deportes");
+    Game game12("Rocket League","Psyonix",4278, true, "Deportes");
+    Game game13("Civilization VI","Firaxis",23, true, "Estrategia");
+    Game game14("AOE II","Forgotten",432, true, "Estrategia");
+    Game game15("Hollow Knight","Team Cherry",635, true, "Plataformas");
+    Game game16("Celeste","Maddy Makes Games",432, true, "Plataformas");
+    Game game17("Stardew Valley","ConcernedAge",677, true, "Simulacion");
+    Game game18("The Sims 4","Maxis",345, true, "Simulacion");
+    Game game19("GTA V","Rockstar",3444, false, "Accion");
+    Game game20("Dark Souls III","FromSoftware",754, false, "Accion");
     biblioteca.push_back(&game1);
     biblioteca.push_back(&game2);
+    biblioteca.push_back(&game3);
+    biblioteca.push_back(&game4);
+    biblioteca.push_back(&game5);
+    biblioteca.push_back(&game6);
+    biblioteca.push_back(&game7);
+    biblioteca.push_back(&game8);
+    biblioteca.push_back(&game9);
+    biblioteca.push_back(&game10);
+    biblioteca.push_back(&game11);
+    biblioteca.push_back(&game12);
+    biblioteca.push_back(&game13);
+    biblioteca.push_back(&game14);
+    biblioteca.push_back(&game15);
+    biblioteca.push_back(&game16);
+    biblioteca.push_back(&game17);
+    biblioteca.push_back(&game18);
+    biblioteca.push_back(&game19);
+    biblioteca.push_back(&game20);
     //Ofimatica
     OfficeAutomation of1("ofimatica1","dev1",87, true);
     OfficeAutomation of2("ofimatica2","devof2",243, false);
