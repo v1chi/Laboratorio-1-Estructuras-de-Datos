@@ -25,5 +25,5 @@ void Social::addFriend()
 };
 string Social::toString()
 {
-    return "Tipo: Software Social, Nombre: " + getName() + ", Developer: " + getDeveloper() + ", Precio: " + to_string(getPrice()) + "\n";
+    return "Tipo: Software Social, Nombre: " + getName() + ", Developer: " + getDeveloper() + ", Precio: " + to_string(getPrice());
 };

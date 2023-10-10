@@ -22,6 +22,8 @@ class Software
     int getPrice();
     bool isForUnderage();
     vector<string> getUsers();
+    void addUser(string user);
+    void deleteUser(string user);
     virtual string toString();
 
 };
@@ -41,7 +43,27 @@ string Software::getDeveloper(){return this->developer;};
 int Software::getPrice(){return this->price;};
 bool Software::isForUnderage(){return this->forUnderage;};
 vector<string> Software::getUsers(){return this->users;};
+void Software::addUser(string user)
+{
+    users.push_back(user);
+};
+void Software::deleteUser(string user)
+{
+    int position = -1;
+    for(int i = 0; i < users.size(); i++){
+        if(users[i] == user){
+            position = i;
+            break;
+        }
+    }
+    if(position != -1){
+        users.erase(users.begin()+position);
+    }
+    else{
+        cout << "No se pudo eliminar" << endl;
+    }
+};
 string Software::toString()
 {
-    return "Nombre: " + name + ", Developer: " + developer + ", Precio: " + to_string(price) + "\n";
+    return "Nombre: " + name + ", Developer: " + developer + ", Precio: " + to_string(price);
 };

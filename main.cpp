@@ -21,28 +21,77 @@ void verMisSoftwares(User* usuario)
         for(int i = 0; i < usuario->getSoftwares().size(); i++){
             cout << usuario->getSoftwares()[i]->toString() << endl;
         }
-    }
-    
+    }   
 }
 
 void agregarSoftware(User* usuario, vector<Software*> biblioteca)
 {
+    cout << "Softwares que puede agregar a su biblioteca: " << endl;
+    
+    for(int i = 0; i < biblioteca.size(); i++){
+        if(typeid(*biblioteca[i]) == typeid(Security)){
+            if(usuario->getLog()){
+                cout << "ID del software: " << i << ": " << biblioteca[i]->toString() << endl;
+            }
+        }
+        else{
+            if(usuario->getAge() < 18){
+                if(biblioteca[i]->isForUnderage()){
+                    cout << "ID del software: " << i << ": " << biblioteca[i]->toString() << endl;
+                }
+            }else{
+                cout << "ID del software: " << i << ": " << biblioteca[i]->toString() << endl;
+            }
+        }
+    }
 
+    //Preguntar por el software que desea agregar
+    int posicionSoftware;
+    cout << "Ingrese el ID del software que desea agregar a su biblioteca" << endl;
+    cin >> posicionSoftware;
+
+    //Se crea la variable "agregar" para corroborar de que el software que desea agregar el usuario a su biblioteca existe
+    Software* agregar = nullptr;
+    agregar = biblioteca[posicionSoftware];
+    if(agregar != nullptr){
+        usuario->addSoftware(biblioteca[posicionSoftware]);
+        biblioteca[posicionSoftware]->addUser(usuario->getUsername());
+        cout << "Software agregado con exito" << endl;
+    }else{
+        cout << "No se pudo agregar el software" << endl;
+    }
 }
 
 void eliminarMiSoftware(User* usuario)
 {   
+    if(usuario->getSoftwares().size()==0){
+        cout << "No hay softwares para eliminar" << endl;
+        return;
+    }
+
+    int softwareEliminar;
+    cout << "Mis Softwares" << endl;
+    for(int i = 0; i < usuario->getSoftwares().size(); i++){
+        cout << "ID del software: " << i << ": "<< usuario->getSoftwares()[i]->toString() << endl;
+    }
+    
+    cout << "Ingrese el ID del software que desea eliminar" << endl;
+    cin >> softwareEliminar;
+    Software* eliminar = usuario->getSoftwares()[softwareEliminar];
+    usuario->deleteSoftware(softwareEliminar);
+    eliminar->deleteUser(usuario->getUsername());
 
 }
 
 void sesionUsuario(User* usuario, vector<User*> usuarios, vector<Software*> biblioteca, bool sesion, bool login)
 {
-    cout << "------------------------------MENU------------------------------" << endl;
+    cout << "----------------------------------------------------------------------------------------------------------------" << endl;
     cout << "Ingrese una opcion" << endl;
     cout << "1. Ver mis softwares" << endl;
     cout << "2. Agregar un software a mi biblioteca" << endl;
     cout << "3. Eliminar un software de mi biblioteca" << endl;
     cout << "4. Cerrar sesion" << endl;
+    cout << "----------------------------------------------------------------------------------------------------------------" << endl;
 
     int opcion;
     cin >> opcion;
@@ -57,12 +106,12 @@ void sesionUsuario(User* usuario, vector<User*> usuarios, vector<Software*> bibl
         case 2:
             //Agregar un software a la biblioteca del usuario
             agregarSoftware(usuario, biblioteca);
-            sesionUsuario(usuarioActual, usuarios, biblioteca, sesion, login);
+            sesionUsuario(usuario, usuarios, biblioteca, sesion, login);
             break;
         case 3:
-            //eliminar un software de la biblioteca del usuario
+            //Eliminar un software de la biblioteca del usuario o de la biblioteca general
             eliminarMiSoftware(usuario);
-            sesionUsuario(usuarioActual, usuarios, biblioteca, sesion, login);
+            sesionUsuario(usuario, usuarios, biblioteca, sesion, login);
             break;
         case 4:
             sesion = false;
@@ -91,22 +140,13 @@ User* iniciarSesion(vector<User*> usuarios, vector<Software*> biblioteca)
     for(int i = 0; i < usuarios.size(); i++){
         //Si se encuentra el username
         if(usuarios[i]->getUsername() == nombreusuario){
-            //Si la contraseña es la correcta para el username
+            //Si la contraseña es la correcta para el username se retorna el usuario 
             if(usuarios[i]->getPassword() == contrasena){
-                //usuarioActual = usuarios[i];
                 return usuarios[i];
             }
         }
     }
-    /*
-    if(usuarioActual != nullptr){
-        cout << "Sesion iniciada con exito" << endl;
-        bool sesion = true;
-        while(sesion){
-            sesionUsuario(usuarioActual, usuarios, biblioteca, sesion);
-        }
-    }
-    */
+    //Si no se encuentra el usuario o la contraseña es incorrecta se retorna un puntero nulo
     cout << "Usuario o contrasena incorrecta" << endl;
     return nullptr;
     
@@ -204,23 +244,27 @@ int main(){
     biblioteca.push_back(&soc1);
     biblioteca.push_back(&soc2);
 
-    //Comienzo del menú de usuario
+    //Boolenaos que van a permitirnos viajar entre el menu general y el menu de usuario
     bool login = true;
     bool sesion = true;
+
+    //Comienzo del menú de usuario
     do{
 
         while(sesion){
             int opcionMenu;
             User* usuarioActual;
+            cout << "----------------------------------------------------------------------------------------------------------------" << endl;
             cout << "Ingrese una opcion" << endl;
             cout << "1. Registrarse" << endl;
             cout << "2. Salir" << endl;
+            cout << "----------------------------------------------------------------------------------------------------------------" << endl;
             cin >> opcionMenu;
 
             switch(opcionMenu)
             {
                 case 1:
-                    //Acceder al menu
+                    //Se verifica que exista el nombre de usuario y que coincida su contraseña y luego de eso se accede al menu de usuario
                     usuarioActual = iniciarSesion(usuarios, biblioteca);
                     if(usuarioActual != nullptr){
                         cout << "Sesion iniciada con exito" << endl;
@@ -228,7 +272,7 @@ int main(){
                     }
                     break;       
                 case 2:
-                    //Salir de la biblioteca
+                    //Salir de la sesion general
                     cout << "Adios!" << endl;
                     login = false;
                     sesion = false;

@@ -45,5 +45,5 @@ void Navegation::seeHistorial()
 };
 string Navegation::toString()
 {
-    return "Tipo: Software de Navegacion, Nombre: " + getName() + ", Developer: " + getDeveloper() + ", Precio: " + to_string(getPrice()) + "\n";
+    return "Tipo: Software de Navegacion, Nombre: " + getName() + ", Developer: " + getDeveloper() + ", Precio: " + to_string(getPrice());
 };

@@ -40,5 +40,5 @@ string OfficeAutomation::getCount()
 };
 string OfficeAutomation::toString()
 {
-    return "Tipo: Software de Ofimatica, Nombre: " + getName() + ", Developer: " + getDeveloper() + ", Precio: " + to_string(getPrice()) + "\n";
+    return "Tipo: Software de Ofimatica, Nombre: " + getName() + ", Developer: " + getDeveloper() + ", Precio: " + to_string(getPrice());
 };
