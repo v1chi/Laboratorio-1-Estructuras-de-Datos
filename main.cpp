@@ -22,6 +22,7 @@ void verMisSoftwares(User* usuario)
             cout << usuario->getSoftwares()[i]->toString() << endl;
         }
     }
+    
 }
 
 void agregarSoftware(User* usuario, vector<Software*> biblioteca)
@@ -34,46 +35,49 @@ void eliminarMiSoftware(User* usuario)
 
 }
 
-void sesionUsuario(User* usuario, vector<User*> usuarios, vector<Software*> biblioteca, bool sesion)
+void sesionUsuario(User* usuario, vector<User*> usuarios, vector<Software*> biblioteca, bool sesion, bool login)
 {
     cout << "------------------------------MENU------------------------------" << endl;
     cout << "Ingrese una opcion" << endl;
     cout << "1. Ver mis softwares" << endl;
     cout << "2. Agregar un software a mi biblioteca" << endl;
     cout << "3. Eliminar un software de mi biblioteca" << endl;
-    cout << "4. Cerrar sesión" << endl;
+    cout << "4. Cerrar sesion" << endl;
 
     int opcion;
     cin >> opcion;
 
-    if(opcion == 1){
-        //Acceder a biblioteca de softwares del usuario
-        verMisSoftwares(usuario);
-        menuUsuario(usuarios, biblioteca);
-    }
-    else if(opcion == 2){
-        //Agregar un software a la biblioteca del usuario
-        agregarSoftware(usuario, biblioteca);
-        menuUsuario(usuarios, biblioteca);
-    }
-    else if(opcion == 3){
-        //eliminar un software de la biblioteca del usuario
-        eliminarMiSoftware(usuario);
-        menuUsuario(usuarios, biblioteca);
-    }
-    else if(opcion == 4){
-        sesion = false
-    }
-    else{
-        cout << "Opcion invalida" << endl;
-        sesion = false;
+    switch(opcion)
+    {
+        case 1:
+            //Acceder a biblioteca de softwares del usuario
+            verMisSoftwares(usuario);
+            sesionUsuario(usuario, usuarios, biblioteca, sesion, login);
+            break;
+        case 2:
+            //Agregar un software a la biblioteca del usuario
+            agregarSoftware(usuario, biblioteca);
+            sesionUsuario(usuarioActual, usuarios, biblioteca, sesion, login);
+            break;
+        case 3:
+            //eliminar un software de la biblioteca del usuario
+            eliminarMiSoftware(usuario);
+            sesionUsuario(usuarioActual, usuarios, biblioteca, sesion, login);
+            break;
+        case 4:
+            sesion = false;
+            break;
+        default:
+            cout << "Opcion invalida" << endl;
+            sesion = false;
+            break;
     }
 
 }
 
-void menuUsuario(vector<User*> usuarios, vector<Software*> biblioteca)
+User* iniciarSesion(vector<User*> usuarios, vector<Software*> biblioteca)
 {
-    User* usuarioActual = nullptr;
+    //User* usuarioActual = nullptr;
     string nombreusuario;
     string contrasena;
 
@@ -89,12 +93,12 @@ void menuUsuario(vector<User*> usuarios, vector<Software*> biblioteca)
         if(usuarios[i]->getUsername() == nombreusuario){
             //Si la contraseña es la correcta para el username
             if(usuarios[i]->getPassword() == contrasena){
-                usuarioActual = usuarios[i];
-                break;
+                //usuarioActual = usuarios[i];
+                return usuarios[i];
             }
         }
     }
-    
+    /*
     if(usuarioActual != nullptr){
         cout << "Sesion iniciada con exito" << endl;
         bool sesion = true;
@@ -102,9 +106,10 @@ void menuUsuario(vector<User*> usuarios, vector<Software*> biblioteca)
             sesionUsuario(usuarioActual, usuarios, biblioteca, sesion);
         }
     }
-    else{
-        cout << "Usuario o contrasena incorrecta" << endl;
-    }
+    */
+    cout << "Usuario o contrasena incorrecta" << endl;
+    return nullptr;
+    
 }
 
 int main(){
@@ -200,32 +205,41 @@ int main(){
     biblioteca.push_back(&soc2);
 
     //Comienzo del menú de usuario
-    bool menu = true;
+    bool login = true;
+    bool sesion = true;
     do{
 
-        int opcionMenu;
-        cout << "Ingrese una opcion" << endl;
-        cout << "1. Registrarse" << endl;
-        cout << "2. Salir" << endl;
-        cin >> opcionMenu;
+        while(sesion){
+            int opcionMenu;
+            User* usuarioActual;
+            cout << "Ingrese una opcion" << endl;
+            cout << "1. Registrarse" << endl;
+            cout << "2. Salir" << endl;
+            cin >> opcionMenu;
 
-        switch(opcionMenu)
-        {
-            case 1:
-                //Acceder al menu
-                menuUsuario(usuarios, biblioteca);
-                break;       
-            case 2:
-                //Salir de la biblioteca
-                cout << "Adios!" << endl;
-                menu = false;
-                break;
-            default:
-                cout << "Opcion invalida" << endl;
-                break;
+            switch(opcionMenu)
+            {
+                case 1:
+                    //Acceder al menu
+                    usuarioActual = iniciarSesion(usuarios, biblioteca);
+                    if(usuarioActual != nullptr){
+                        cout << "Sesion iniciada con exito" << endl;
+                        sesionUsuario(usuarioActual, usuarios, biblioteca, sesion, login);
+                    }
+                    break;       
+                case 2:
+                    //Salir de la biblioteca
+                    cout << "Adios!" << endl;
+                    login = false;
+                    sesion = false;
+                    break;
+                default:
+                    cout << "Opcion invalida" << endl;
+                    break;
+            }
         }
 
-    }while(menu);
+    }while(login);
 
     return 0;
 }
