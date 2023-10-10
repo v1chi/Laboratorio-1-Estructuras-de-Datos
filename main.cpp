@@ -14,7 +14,14 @@ using namespace std;
 
 void verMisSoftwares(User* usuario)
 {
-
+    if(usuario->getSoftwares().empty()){
+        cout << "No tiene softwares" << endl;
+    }
+    else{
+        for(int i = 0; i < usuario->getSoftwares().size(); i++){
+            cout << usuario->getSoftwares()[i]->toString() << endl;
+        }
+    }
 }
 
 void agregarSoftware(User* usuario, vector<Software*> biblioteca)
@@ -36,30 +43,32 @@ void sesionUsuario(User* usuario, vector<User*> usuarios, vector<Software*> bibl
     cout << "3. Eliminar un software de mi biblioteca" << endl;
     cout << "4. Cerrar sesión" << endl;
 
-    int opcionAdmin;
-    cin >> opcionAdmin;
+    int opcion;
+    cin >> opcion;
 
-    switch(opcionAdmin)
-    {
-        case 1:
+    if(opcion == 1){
         //Acceder a biblioteca de softwares del usuario
-            verMisSoftwares(usuario);
-            break;
-        case 2:
-        //agregar un software a la biblioteca del usuario
-            agregarSoftware(usuario, biblioteca);
-            break;
-        case 3:
-        //eliminar un software de la biblioteca del usuario
-            eliminarMiSoftware(usuario);
-            break;
-        case 4:
-            sesion = false;
-            break;
-        default:
-            cout << "Opcion invalida" << endl;
-            break;
+        verMisSoftwares(usuario);
+        menuUsuario(usuarios, biblioteca);
     }
+    else if(opcion == 2){
+        //Agregar un software a la biblioteca del usuario
+        agregarSoftware(usuario, biblioteca);
+        menuUsuario(usuarios, biblioteca);
+    }
+    else if(opcion == 3){
+        //eliminar un software de la biblioteca del usuario
+        eliminarMiSoftware(usuario);
+        menuUsuario(usuarios, biblioteca);
+    }
+    else if(opcion == 4){
+        sesion = false
+    }
+    else{
+        cout << "Opcion invalida" << endl;
+        sesion = false;
+    }
+
 }
 
 void menuUsuario(vector<User*> usuarios, vector<Software*> biblioteca)
@@ -144,20 +153,33 @@ int main(){
     //Juegos
     Game game1("CSGO","VALVE", 145, false, "FPS");
     Game game2("WOW","BLIZZARD",386, true, "MMO");
+    biblioteca.push_back(&game1);
+    biblioteca.push_back(&game2);
     //Ofimatica
     OfficeAutomation of1("ofimatica1","dev1",87, true);
     OfficeAutomation of2("ofimatica2","devof2",243, false);
     OfficeAutomation of3("ofimatica3","devof3",932, true);
     OfficeAutomation of4("ofimatica4","devof4",89230, false);
     OfficeAutomation of5("ofimatica5","devof5",823, true);
+    biblioteca.push_back(&of1);
+    biblioteca.push_back(&of2);
+    biblioteca.push_back(&of3);
+    biblioteca.push_back(&of4);
+    biblioteca.push_back(&of5);
     //Navegacion
     Navegation nav1("nav1","devnav1",376, true);
     Navegation nav2("nav2","devnav2",500, false);
+    biblioteca.push_back(&nav1);
+    biblioteca.push_back(&nav2);
     //Produccion
     Production prod1("pro1", "devprod1", 4382, false, "musica");
     Production prod2("prod2","devprod2",237, false, "video");
     Production prod3("prod3","devprod3",3479, false, "streaming");
     Production prod4("prod4","devprod4",3412, false, "fotos");
+    biblioteca.push_back(&prod1);
+    biblioteca.push_back(&prod2);
+    biblioteca.push_back(&prod3);
+    biblioteca.push_back(&prod4);
     //Seguridad
     Security sec1("sec1","devsec1",7843, false, "troyanos");
     Security sec2("sec2","deevsec2",3672, false, "spyware");
@@ -165,9 +187,17 @@ int main(){
     Security sec4("sec4","deevsec4",4343, false, "botnets");
     Security sec5("sec5","deevsec5",89349, false, "rootkits");
     Security sec6("sec6","deevsec6",2784, false, "gusanos");
+    biblioteca.push_back(&sec1);
+    biblioteca.push_back(&sec2);
+    biblioteca.push_back(&sec3);
+    biblioteca.push_back(&sec4);
+    biblioteca.push_back(&sec5);
+    biblioteca.push_back(&sec6);
     //Social
     Social soc1("soc1","devsoc1",496, true);
     Social soc2("soc2","devsoc2",9034, false);
+    biblioteca.push_back(&soc1);
+    biblioteca.push_back(&soc2);
 
     //Comienzo del menú de usuario
     bool menu = true;

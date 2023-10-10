@@ -32,7 +32,7 @@ User::User(string username, string password, int age, string mail, bool logUser)
     this->age=age;
     this->mail=mail;
     this->logUser=logUser;
-    vector<Software> softwares(6);
+    vector<Software*> softwares(6);
 };
 User::User(){};
 int User::getAge(){return this->age;};
