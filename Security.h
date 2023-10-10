@@ -11,6 +11,7 @@ class Security: public Software
     public:
     Security(string name, string developer, int price, bool forUnderage, string type);
     string getType();
+    string toString();
 };
 
 
@@ -20,3 +21,7 @@ Security::Security(string name, string developer, int price, bool forUnderage, s
     this->type=type;
 };
 string Security::getType(){return this->type;};
+string Security::toString()
+{
+    return "Tipo: Software de Seguridad, Nombre: " + getName() + ", Developer: " + getDeveloper() + ", Precio: " + to_string(getPrice()) + "Tipo de Seguridad: "+ type + "\n";
+};

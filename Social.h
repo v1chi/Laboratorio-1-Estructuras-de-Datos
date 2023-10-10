@@ -12,6 +12,7 @@ class Social: public Software
     public:
     Social(string name, string developer, int price, bool forUnderage);
     void addFriend();
+    string toString();
 };
 
 
@@ -21,4 +22,8 @@ void Social::addFriend()
 {   
     this->friendsCount += 1;
     cout << "Amigo añadido exitosamente" << endl;
+};
+string Social::toString()
+{
+    return "Tipo: Software Social, Nombre: " + getName() + ", Developer: " + getDeveloper() + ", Precio: " + to_string(getPrice()) + "\n";
 };

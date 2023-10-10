@@ -11,7 +11,7 @@ class User
     int age;
     string mail;
     bool logUser;
-    vector<vector<Software>> softwares;
+    vector<Software*> softwares;
 
     public:
     User(string username, string password, int age, string mail, bool logUser);
@@ -21,10 +21,8 @@ class User
     string getPassword();
     string getMail();
     bool getLog();
-    vector<vector<Software>> getSoftwares();
+    vector<Software*> getSoftwares();
 };
-
-
 
 
 User::User(string username, string password, int age, string mail, bool logUser)
@@ -42,4 +40,4 @@ string User::getUsername(){return this->username;};
 string User::getPassword(){return this->password;};
 string User::getMail(){return this->mail;};
 bool User::getLog(){return this->logUser;};
-vector<vector<Software>> User::getSoftwares(){return this->softwares;};
+vector<Software*> User::getSoftwares(){return this->softwares;};

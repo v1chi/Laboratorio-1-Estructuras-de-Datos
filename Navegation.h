@@ -11,7 +11,8 @@ class Navegation: public Software
     public:
     Navegation(string name, string developer, int price, bool isForUnderage);
     void addPage(string url);
-    string seeHistorial();
+    void seeHistorial();
+    string toString();
 };
 
 
@@ -25,25 +26,24 @@ void Navegation::addPage(string url)
 {
     this->historial.push_back(url);
 };
-string Navegation::seeHistorial()
+void Navegation::seeHistorial()
 {   
-    string url = "";
     
     if(this->historial.size() <= 0){
-        url = "No existe historial\n";
+        cout <<  "No existe historial" << endl;
     }
     else if(this->historial.size() <= 10){
         for (int i = 0; i < this->historial.size(); i++){
-            url += this->historial[i] + "\n";
+            cout << this->historial[i] << endl;
         }
     }
     else if(this->historial.size() > 10){
         for (int i = this->historial.size() - 10; i < this->historial.size(); i++){
-            url += this->historial[i] + "\n";
+            cout << this->historial[i] << endl;
         }
     }
-
-    return url;
-    
-    
+};
+string Navegation::toString()
+{
+    return "Tipo: Software de Navegacion, Nombre: " + getName() + ", Developer: " + getDeveloper() + ", Precio: " + to_string(getPrice()) + "\n";
 };

@@ -11,6 +11,7 @@ class Game: public Software
     public:
     Game(string name, string developer, int price, bool isForUnderage, string genre);
     string getGenre();
+    string toString();
 };
 
 //------------------------------------------------------------METODOS------------------------------------------------------------------
@@ -19,3 +20,7 @@ Game::Game(string name, string developer, int price, bool isForUnderage, string 
     this->genre=genre;
 };
 string Game::getGenre(){return this->genre;};
+string Game::toString()
+{
+    return "Tipo: Software de Juego, Nombre: " + getName() + ", Developer: " + getDeveloper() + ", Precio: " + to_string(getPrice()) + "Genero: "+ genre + "\n";
+};

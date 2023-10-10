@@ -13,7 +13,7 @@ class OfficeAutomation: public Software
     void createFile();
     bool deleteFile();
     string getCount();
-
+    string toString();
 };
 
 
@@ -37,4 +37,8 @@ bool OfficeAutomation::deleteFile()
 string OfficeAutomation::getCount()
 {
     return "Este software tiene " + to_string(fileCount) + " archivos\n";
+};
+string OfficeAutomation::toString()
+{
+    return "Tipo: Software de Ofimatica, Nombre: " + getName() + ", Developer: " + getDeveloper() + ", Precio: " + to_string(getPrice()) + "\n";
 };

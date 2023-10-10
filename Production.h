@@ -11,6 +11,7 @@ class Production: public Software
     public:
     Production(string name, string developer, int price, bool isForUnderage, string type);
     string getType();
+    string toString();
 };
 
 
@@ -20,3 +21,7 @@ Production::Production(string name, string developer, int price, bool isForUnder
     this->type=type;
 };
 string Production::getType(){return this->type;};
+string Production::toString()
+{
+    return "Tipo: Software de Produccion, Nombre: " + getName() + ", Developer: " + getDeveloper() + ", Precio: " + to_string(getPrice()) + "Tipo de Produccion: "+ type + "\n";
+};
