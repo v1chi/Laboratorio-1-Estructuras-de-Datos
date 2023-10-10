@@ -17,7 +17,7 @@ void verMisSoftwares(User* usuario)
 
 }
 
-void agregarSoftware(User* usuario, vector<Software> biblioteca)
+void agregarSoftware(User* usuario, vector<Software*> biblioteca)
 {
 
 }
@@ -27,7 +27,7 @@ void eliminarMiSoftware(User* usuario)
 
 }
 
-void sesionUsuario(User* usuario, vector<User> usuarios, vector<Software> biblioteca, bool sesion)
+void sesionUsuario(User* usuario, vector<User*> usuarios, vector<Software*> biblioteca, bool sesion)
 {
     cout << "------------------------------MENU------------------------------" << endl;
     cout << "Ingrese una opcion" << endl;
@@ -62,7 +62,7 @@ void sesionUsuario(User* usuario, vector<User> usuarios, vector<Software> biblio
     }
 }
 
-void menuUsuario(vector<User> usuarios, vector<Software> biblioteca)
+void menuUsuario(vector<User*> usuarios, vector<Software*> biblioteca)
 {
     User* usuarioActual = nullptr;
     string nombreusuario;
@@ -77,10 +77,10 @@ void menuUsuario(vector<User> usuarios, vector<Software> biblioteca)
     //Buscar en la lista de usuarios
     for(int i = 0; i < usuarios.size(); i++){
         //Si se encuentra el username
-        if(usuarios[i].getUsername() == nombreusuario){
+        if(usuarios[i]->getUsername() == nombreusuario){
             //Si la contraseña es la correcta para el username
-            if(usuarios[i].getPassword() == contrasena){
-                usuarioActual = &usuarios[i];
+            if(usuarios[i]->getPassword() == contrasena){
+                usuarioActual = usuarios[i];
                 break;
             }
         }
@@ -96,18 +96,28 @@ void menuUsuario(vector<User> usuarios, vector<Software> biblioteca)
     else{
         cout << "Usuario o contrasena incorrecta" << endl;
     }
-    
-    
 }
 
 int main(){
 
-//creacion de usuarios: (username,password,age,mail,bool log)
+//Lista de softwares y usuarios del sistema interno
+    vector<Software*> biblioteca;
+    vector<User*> usuarios;
+
+//Creacion de usuarios
+    //Administrador
     User adm1("adminav1", "123abc", -1, "123@gmail.com", true);
-    User child1("nino1", "123abc", 10, NULL, false);
-    User child2("nino2", "hsakw", 5, NULL, false);
-    User child3("nino3", "83ru2", 14, NULL, false);
-    User child4("nino4", "iosh", 17, NULL, false);
+    usuarios.push_back(&adm1);
+    //Niño
+    User child1("nino1", "123abc", 10, "", false);
+    User child2("nino2", "hsakw", 5, "", false);
+    User child3("nino3", "83ru2", 14, "", false);
+    User child4("nino4", "iosh", 17, "", false);
+    usuarios.push_back(&child1);
+    usuarios.push_back(&child2);
+    usuarios.push_back(&child3);
+    usuarios.push_back(&child4);
+    //Normal
     User normal1("normal1", "456def", 20 , "456@gmail.com", false);
     User normal2("normal2", "nrt", 40 , "asd@gmail.com", false);
     User normal3("normal3", "rtns", 19 , "qwe@gmail.com", false);
@@ -118,6 +128,16 @@ int main(){
     User normal8("normal8", "wh45", 49 , "kjh@gmail.com", false);
     User normal9("normal9", "75u", 62 , "jnt@gmail.com", false);
     User normal10("normal10", "suj", 19 , "jko@gmail.com", false);
+    usuarios.push_back(&normal1);
+    usuarios.push_back(&normal2);
+    usuarios.push_back(&normal3);
+    usuarios.push_back(&normal4);
+    usuarios.push_back(&normal5);
+    usuarios.push_back(&normal6);
+    usuarios.push_back(&normal7);
+    usuarios.push_back(&normal8);
+    usuarios.push_back(&normal9);
+    usuarios.push_back(&normal10);
 
 
 //Softwares
@@ -149,10 +169,6 @@ int main(){
     Social soc1("soc1","devsoc1",496, true);
     Social soc2("soc2","devsoc2",9034, false);
 
-    //Lista de softwares y usuarios del sistema interno
-    vector<Software> biblioteca{game1, game2, of1, of2, of3, of4, of5, nav1, nav2, prod1, prod2, prod3, prod4, sec1, sec2, sec3, sec4, sec5, sec6, soc1,soc2};
-    vector<User> usuarios{adm1, child1, child2, child3, child4, normal1, normal2, normal3, normal4, normal5, normal6, normal7, normal8, normal9, normal10};
-
     //Comienzo del menú de usuario
     bool menu = true;
     do{
@@ -171,6 +187,7 @@ int main(){
                 break;       
             case 2:
                 //Salir de la biblioteca
+                cout << "Adios!" << endl;
                 menu = false;
                 break;
             default:
